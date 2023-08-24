@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid rgb(243, 243, 247);
+    min-height: 27px;
+}
+
+.content{
+    display: flex;
+    width: 70%;
+    padding: 12px 0;
+}
+
+.a {
+    position: relative;
+    margin-left: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    transition: .2s;
+}
+
+
+.a:first-child {
+    margin-left: 0;
+}
+
+.a:first-child::before {
+    position: absolute;
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: red;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: circle 1s infinite ease-in;
+}
+
+.a:hover{
+    color: #FF4F00;
+}
+
+/* KEYFRAME ANIMATIONS */
+
+@keyframes circle {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

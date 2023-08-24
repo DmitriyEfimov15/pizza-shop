@@ -1,6 +1,7 @@
 import React, {FC, useContext} from "react";
 import classes from "./MainPage.module.css"
 import { AuthContext } from "../../context/AuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 
 const MainPage: FC = () => {
     const {setIsAuth} = useContext(AuthContext)
@@ -11,7 +12,10 @@ const MainPage: FC = () => {
         localStorage.removeItem('auth')
     }
     return (
-        <button onClick={logOut}>выйти</button>
+        <div>
+            <Navbar/>
+            <button onClick={logOut}>выйти</button>
+        </div>
     )
 }
 
