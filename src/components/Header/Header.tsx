@@ -1,9 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import classes from "./Header.module.css"
 import pizzaImg from "../../assets/pizza.png"
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 
 const Header: FC = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+
     return (
         <header className={classes.container}>
             <div className={classes.content}>
@@ -26,7 +29,10 @@ const Header: FC = () => {
                 </div>
 
                 <div className={classes.right}>
-                    <Button color="">Войти</Button>
+                    <Button onClick={() => setIsVisible(true)} color="">Войти</Button>
+                    <Modal isVisible={isVisible} setIsVisible={setIsVisible}>
+                                <div></div>
+                    </Modal>
                 </div>
             </div>
         </header>
