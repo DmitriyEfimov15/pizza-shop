@@ -1,0 +1,32 @@
+.button__orange,
+.button__gray {
+    min-width: 50px;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    border-radius: 35px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button__orange {
+    padding: 5px 15px;
+    background: #FF4F00;
+    font-size: 18px;
+    color: #fff;
+}
+
+.button__orange:hover {
+    background: #da4703;
+}
+
+.button__gray {
+    background: rgb(243, 243, 247);
+    color: rgb(92, 99, 112);
+    padding: 5px 10px;
+    font-size: 17px;
+}
+
+.button__gray:hover {
+    color: #000;
+}
