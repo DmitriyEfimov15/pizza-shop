@@ -9,10 +9,11 @@
 }
 
 .content {
-    padding: 15px;
-    background: #fff;
+    padding: 32px;
+    background: rgb(243, 243, 247);
     border-radius: 20px;
     min-width: 250px;
+    max-width: 450px;
 }
 
 .container.active {

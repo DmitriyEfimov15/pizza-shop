@@ -1,11 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import classes from "./Header.module.css"
-import pizzaImg from "../../assets/pizza.png"
+import pizzaImg from "../../../assets/pizza.png"
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
+import Input from "../Input/Input";
+import ModalButton from "../ModalButton/ModalButton";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [inputValue, setInputValue] = useState<string>('')
+    // const buttonRef = useRef<HTMLButtonElement>(null)
 
     return (
         <header className={classes.container}>
@@ -27,11 +31,17 @@ const Header: FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={classes.right}>
                     <Button onClick={() => setIsVisible(true)} color="">Войти</Button>
                     <Modal isVisible={isVisible} setIsVisible={setIsVisible}>
-                                <div></div>
+                        <form className={classes.form}>
+                            <h2>Вход на сайт</h2>
+                            <p>Подарим подарок на день рождения, сохраним адрес доставки и расскажем об акциях</p>
+                            <p className={classes.number}>Номер телефона</p>
+                            <Input type="text" onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
+                            <ModalButton disabled={inputValue.length < 11}>Выслать код</ModalButton>
+                            <p className={classes.agreement}>Продолжая, вы соглашаетесь <span>со сбором и обработкой персональных данных и пользовательским соглашением</span></p>
+                        </form>
                     </Modal>
                 </div>
             </div>

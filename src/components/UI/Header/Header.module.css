@@ -68,3 +68,28 @@
     transform: translateY(-50%);
     right: -13px;
 }
+
+.form h2{
+    font-size: 32px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+.form p {
+    color: rgb(92, 99, 112);
+    margin-top: 10px;
+}
+
+.number {
+    font-size: 14px;
+}
+
+.agreement {
+    font-size: 12px;
+    text-align: center;
+}
+
+.agreement span {
+    color: #FF4F00;
+    cursor: pointer;
+}

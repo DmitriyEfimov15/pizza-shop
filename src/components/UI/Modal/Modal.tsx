@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import classes from "./Modal.module.css"
-import { useOut } from "../../hooks/useOut";
+import { useOut } from "../../../hooks/useOut";
 
 interface ModalProps {
     children: ReactNode;

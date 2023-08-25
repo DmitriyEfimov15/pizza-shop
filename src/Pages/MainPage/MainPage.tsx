@@ -1,8 +1,8 @@
 import React, {FC, useContext} from "react";
 import classes from "./MainPage.module.css"
 import { AuthContext } from "../../context/AuthContext";
-import Navbar from "../../components/Navbar/Navbar";
-import Header from "../../components/Header/Header";
+import Navbar from "../../components/UI/Navbar/Navbar";
+import Header from "../../components/UI/Header/Header";
 const MainPage: FC = () => {
     // const {setIsAuth} = useContext(AuthContext)
 
