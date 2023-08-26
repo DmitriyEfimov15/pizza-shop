@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import classes from "./Header.module.css"
 import pizzaImg from "../../../assets/pizza.png"
 import Button from "../Button/Button";
@@ -8,8 +8,38 @@ import ModalButton from "../ModalButton/ModalButton";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    const [inputValue, setInputValue] = useState<string>('')
-    // const buttonRef = useRef<HTMLButtonElement>(null)
+    let [inputValue, setInputValue] = useState<string>('8')
+
+    useMemo(() => {
+        if(inputValue.length > 17) {
+            inputValue = inputValue.substring(0, 17)
+        }
+    }, [inputValue])
+
+    const formatePhoneNumber = (value: string) => {
+        if(!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+        if(phoneNumberLength < 5) return phoneNumber;
+        if(phoneNumberLength < 7) {
+            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4)}`
+        }
+        if(phoneNumberLength < 8) {
+            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}`
+        }
+        
+        if (phoneNumberLength < 10) {
+            return  `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}`
+        }
+
+        return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
+    }
+
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const formatedPhoneNumber: string = formatePhoneNumber(e.target.value)
+        setInputValue(formatedPhoneNumber)
+    } 
+
 
     return (
         <header className={classes.container}>
@@ -38,8 +68,8 @@ const Header: FC = () => {
                             <h2>Вход на сайт</h2>
                             <p>Подарим подарок на день рождения, сохраним адрес доставки и расскажем об акциях</p>
                             <p className={classes.number}>Номер телефона</p>
-                            <Input type="text" onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
-                            <ModalButton disabled={inputValue.length < 11}>Выслать код</ModalButton>
+                            <Input text="8 (999) 999-99-99" type="text" onChange={handleInput    } value={inputValue} />
+                            <ModalButton disabled={inputValue.length < 17}>Выслать код</ModalButton>
                             <p className={classes.agreement}>Продолжая, вы соглашаетесь <span>со сбором и обработкой персональных данных и пользовательским соглашением</span></p>
                         </form>
                     </Modal>

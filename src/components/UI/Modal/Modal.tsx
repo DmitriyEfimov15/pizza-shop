@@ -1,6 +1,9 @@
 import React, { FC, ReactNode } from "react";
 import classes from "./Modal.module.css"
 import { useOut } from "../../../hooks/useOut";
+import { CSSTransition } from "react-transition-group"
+import "./animation.css"
+import {AiOutlineClose} from "react-icons/ai"
 
 interface ModalProps {
     children: ReactNode;
@@ -18,9 +21,16 @@ const Modal: FC<ModalProps> = ({children, isVisible, setIsVisible}) => {
 
     return (
         <div className={rootClasses.join(' ')} onClick={() => setIsVisible(false)}>
-            <div ref={modalRef} className={classes.content} onClick={(e) => e.stopPropagation()}>
-                {children}
-            </div>
+            <CSSTransition
+                in={isVisible}
+                classNames={'modal'}
+                timeout={500}
+            >
+                <div ref={modalRef} className={classes.content} onClick={(e) => e.stopPropagation()}>
+                    {children}
+                    <div className={classes.close__button} onClick={() => setIsVisible(false)}><AiOutlineClose/></div>
+                </div>
+            </CSSTransition>
         </div>
     )
 }

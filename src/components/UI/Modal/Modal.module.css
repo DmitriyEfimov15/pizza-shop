@@ -9,6 +9,7 @@
 }
 
 .content {
+    position: relative;
     padding: 32px;
     background: rgb(243, 243, 247);
     border-radius: 20px;
@@ -20,4 +21,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.close__button {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    color: #fff;
+    
+    cursor: pointer;
+    /* font-family: "Montserrat", sans-serif;
+    font-weight: 700px; */
+    transition: .2s;
+}
+
+.close__button svg {
+    width: 40px;
+    height: 40px;
+}
+
+.close__button:hover {
+    transform: scale(1.3);
 }

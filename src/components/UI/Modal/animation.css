@@ -1,0 +1,12 @@
+.modal-enter-active {
+    animation: in .5s forwards;
+}
+@keyframes in {
+    from {
+        transform: scale(0.5);
+    }
+
+    to {
+        transform: scale(1);
+    }    
+}
