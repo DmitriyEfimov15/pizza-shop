@@ -1,12 +1,14 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import { cityAPI } from "../services/CityService"
 
 export const rootReducer = combineReducers({
-    
+    [cityAPI.reducerPath]: cityAPI.reducer
 })
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cityAPI.middleware)
     })
 }
 

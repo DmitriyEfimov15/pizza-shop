@@ -7,6 +7,8 @@ import Input from "../Input/Input";
 import ModalButton from "../ModalButton/ModalButton";
 import { CSSTransition } from "react-transition-group"
 import "./animation.css"
+import { cityAPI } from "../../../services/CityService";
+import CityItem from "../../CityItem/CityItem";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -16,13 +18,13 @@ const Header: FC = () => {
     const [countCities, setCountCities] = useState<number>(0)
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
-    const tagP = useRef<HTMLParagraphElement>(null)
-
+    const {data: cities} = cityAPI.useFetchAllCitiesQuery(1)
     useMemo(() => {
         if(inputValue.length > 17) {
             setInputValue(inputValue.substring(0, 17))
         }
     }, [inputValue])
+    
 
     const formatPhoneNumber = (value: string) => {
         if(!value) return value;
@@ -74,8 +76,14 @@ const Header: FC = () => {
                                 </div>
 
                                 <div className={classes.popular__cities}>
-                                    <a  onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Москва</a>
-                                    <a>Санкт-Петербург</a>
+                                    <a onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Москва</a>
+                                    <a onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Санкт-Петербург</a>
+                                </div>
+
+                                <div className={classes.modal__cities}>
+                                    {cities && cities.map(city => (
+                                        <CityItem name={city.name}/>
+                                    ))}
                                 </div>
                             </div>
                         </Modal>

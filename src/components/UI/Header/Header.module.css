@@ -77,7 +77,8 @@
     align-items: center;
 }
 
-.popular__cities a{
+.popular__cities a,
+.modal__cities a{
     text-decoration: none;
     color: #000;
     font-size: 24px;
@@ -89,9 +90,14 @@
     margin-left: 20px
 }
 
-.popular__cities a:hover {
+.popular__cities a:hover,
+.modal__cities a:hover {
     color: #FF4F00;
 }
+
+/* .modal__cities {
+    
+} */
 
 .info__window {
     position: absolute;
