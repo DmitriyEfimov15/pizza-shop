@@ -5,20 +5,38 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import Input from "../Input/Input";
 import ModalButton from "../ModalButton/ModalButton";
-import { useFormatPhoneNumber } from "../../../hooks/useFormatPhoneNumber";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    let [inputValue, setInputValue] = useState<string>('8')
+    const [inputValue, setInputValue] = useState<string>('8')
 
     useMemo(() => {
         if(inputValue.length > 17) {
-            inputValue = inputValue.substring(0, 17)
+            setInputValue(inputValue.substring(0, 17))
         }
     }, [inputValue])
 
+    const formatPhoneNumber = (value: string) => {
+        if(!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+        if(phoneNumberLength < 5) return phoneNumber;
+        if(phoneNumberLength < 7) {
+            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4)}`
+        }
+        if(phoneNumberLength < 8) {
+            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}`
+        }
+        
+        if (phoneNumberLength < 10) {
+            return  `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}`
+        }
+    
+        return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
+    }
+
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const formatedPhoneNumber: string = useFormatPhoneNumber(e.target.value)
+        const formatedPhoneNumber: string = formatPhoneNumber(e.target.value)
         setInputValue(formatedPhoneNumber)
     }
 
