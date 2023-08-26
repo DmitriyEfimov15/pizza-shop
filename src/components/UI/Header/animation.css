@@ -1,0 +1,17 @@
+.info-enter-active {
+    animation: in .3s forwards;
+}
+
+.info-exit-active {
+    animation: in .3s reverse;
+}
+
+@keyframes in {
+    from {
+        transform: translateY(20px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}

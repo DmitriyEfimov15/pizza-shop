@@ -1,14 +1,22 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useRef, useState } from "react";
 import classes from "./Header.module.css"
 import pizzaImg from "../../../assets/pizza.png"
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import Input from "../Input/Input";
 import ModalButton from "../ModalButton/ModalButton";
+import { CSSTransition } from "react-transition-group"
+import "./animation.css"
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [isInfoVisible, setIsInfoVisible] = useState<boolean>(false)
     const [inputValue, setInputValue] = useState<string>('8')
+    const [cityModal, setCityModal] = useState<boolean>(false)
+    const [countCities, setCountCities] = useState<number>(0)
+    const [searchValue, setSearchValue] = useState<string>('')
+    const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
+    const tagP = useRef<HTMLParagraphElement>(null)
 
     useMemo(() => {
         if(inputValue.length > 17) {
@@ -53,10 +61,61 @@ const Header: FC = () => {
                     </div>
 
                     <div className={classes.deliviry}>
-                        <h2 className={classes.deliviry__text}>Доставка пиццы <span>Ростов-на-Дону</span></h2>
+                        <h2 className={classes.deliviry__text}>Доставка пиццы <span onClick={() => setCityModal(true)}>{currentCity}</span></h2>
+                        <Modal isVisible={cityModal} setIsVisible={setCityModal}>
+                            <div className={classes.modal__content}>
+                                <div className={classes.modal__header}>
+                                    <img src={pizzaImg} alt="Logo" />
+                                    <p>{countCities} пиццерий в России</p>
+                                </div>
+
+                                <div className={classes.modal__input}>
+                                    <Input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} text="Поиск..." type="text"/>
+                                </div>
+
+                                <div className={classes.popular__cities}>
+                                    <a  onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Москва</a>
+                                    <a>Санкт-Петербург</a>
+                                </div>
+                            </div>
+                        </Modal>
                         <div className={classes.deliviry__info}>
-                            <p>35 минут</p>
-                            <p>4.89</p>
+                            <p onMouseEnter={() => setIsInfoVisible(true)} onMouseLeave={() => setIsInfoVisible(false)} className={classes.time}>35 минут</p>
+                            <p onMouseEnter={() => setIsInfoVisible(true)} onMouseLeave={() => setIsInfoVisible(false)}>4.89</p>
+                            <CSSTransition
+                                in={isInfoVisible}
+                                timeout={300}
+                                classNames={'info'}
+                            >
+                                <div className={isInfoVisible ? classes.info__window : classes.unactive}>
+                                    <div className={classes.window__content}>
+                                        <div className={classes.header__window}>
+                                            <h2>Всегда бесплатная, всегда быстрая</h2>
+                                            <p>Условия доставки не меняются в течении дня.Но если вы ждали заказ больше часа, мы подарим сертификат на пиццу</p>
+                                        </div>
+
+                                        <div className={classes.main__window}>
+                                            <div className={classes.window__left}>
+                                                <h2>35 минут</h2>
+                                                <p className={classes.white}>Среднее время доставки</p>
+                                                <p className={classes.gray}>Если мы не успеваем, то вы получите сертификат на большую пиццу</p>
+                                            </div>
+
+                                            <div className={classes.window__right}>
+                                                <div className={classes.window__stars}>
+                                                    <p>4.9</p>
+                                                </div>
+                                                <p className={classes.white}>2310 оценок</p>
+                                                <p className={classes.gray}>Оценить можно в мобильном приложении</p>
+                                            </div>
+                                        </div>
+
+                                        <div className={classes.footer__window}>
+                                            <p className={classes.gray}>Данные за последние 7 дней в вашем городе</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CSSTransition>
                         </div>
                     </div>
                 </div>
