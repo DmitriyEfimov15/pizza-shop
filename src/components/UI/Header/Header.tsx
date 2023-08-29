@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from "react";
+import React, { FC, useMemo,useEffect, useState } from "react";
 import classes from "./Header.module.css"
 import pizzaImg from "../../../assets/pizza.png"
 import Button from "../Button/Button";
@@ -9,45 +9,53 @@ import { CSSTransition } from "react-transition-group"
 import "./animation.css"
 import { cityAPI } from "../../../services/CityService";
 import CityItem from "../../CityItem/CityItem";
+import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
+import { ICity } from "../../../types/city";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
     const [isInfoVisible, setIsInfoVisible] = useState<boolean>(false)
     const [inputValue, setInputValue] = useState<string>('8')
     const [cityModal, setCityModal] = useState<boolean>(false)
-    const [countCities, setCountCities] = useState<number>(0)
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
-    const {data: cities} = cityAPI.useFetchAllCitiesQuery(1)
+    let {data: cities} = cityAPI.useFetchAllCitiesQuery(1)
+    const [countCities, setCountCities] = useState<number>(0)
+    const alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toUpperCase().split('')
+
+//    useMemo(() => {
+//         if (cities) {
+//             cities = [...cities.filter((value, index) => {cities?.indexOf(value) === index})]
+//         }
+//         else return cities;
+//     }, [cities])
+
+    const sortArray = (array: any[]) => {
+        return array.filter((value, index) => array.indexOf(value) === index)
+    }
+
+    useMemo(() => {
+        if(cities) {
+            cities = sortArray(cities)
+        }
+        else return cities;
+    }, [cities, cityModal])
+    
+
     useMemo(() => {
         if(inputValue.length > 17) {
             setInputValue(inputValue.substring(0, 17))
         }
     }, [inputValue])
-    
-
-    const formatPhoneNumber = (value: string) => {
-        if(!value) return value;
-        const phoneNumber = value.replace(/[^\d]/g, '');
-        const phoneNumberLength = phoneNumber.length;
-        if(phoneNumberLength < 5) return phoneNumber;
-        if(phoneNumberLength < 7) {
-            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4)}`
-        }
-        if(phoneNumberLength < 8) {
-            return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}`
-        }
-        
-        if (phoneNumberLength < 10) {
-            return  `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}`
-        }
-    
-        return `${phoneNumber.slice(0, 1)} (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
-    }
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const formatedPhoneNumber: string = formatPhoneNumber(e.target.value)
         setInputValue(formatedPhoneNumber)
+    }
+
+    const setCityFunc = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        setCurrentCity(event.currentTarget.innerHTML)
+        setCityModal(false)
     }
 
     return (
@@ -76,13 +84,13 @@ const Header: FC = () => {
                                 </div>
 
                                 <div className={classes.popular__cities}>
-                                    <a onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Москва</a>
-                                    <a onClick={(e) => setCurrentCity(e.currentTarget.innerHTML)}>Санкт-Петербург</a>
+                                    <a onClick={setCityFunc}>Москва</a>
+                                    <a onClick={setCityFunc}>Санкт-Петербург</a>
                                 </div>
 
                                 <div className={classes.modal__cities}>
                                     {cities && cities.map(city => (
-                                        <CityItem name={city.name}/>
+                                        <CityItem key={city.name} callback={setCityFunc} name={city.name}/>
                                     ))}
                                 </div>
                             </div>

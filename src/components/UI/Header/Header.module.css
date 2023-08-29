@@ -57,6 +57,7 @@
 
 .modal__content {
     font-family: "Montserrat", sans-serif;
+    width: 1100px;
 }
 
 .modal__header {
@@ -75,6 +76,8 @@
 .popular__cities {
     display: flex;
     align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
 }
 
 .popular__cities a,
@@ -95,9 +98,34 @@
     color: #FF4F00;
 }
 
-/* .modal__cities {
-    
-} */
+.modal__cities {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+.modal__cities::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal__cities::-webkit-scrollbar-thumb {
+    background: #c2bdbd;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.modal__cities div {
+    margin: 5px;
+}
+
+.modal__cities div a {
+    font-size: 17px;
+}
 
 .info__window {
     position: absolute;
@@ -176,6 +204,10 @@
     top: 50%;
     transform: translateY(-50%);
     right: -13px;
+}
+
+.form {
+    max-width: 450px;
 }
 
 .form h2{
