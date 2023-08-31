@@ -15,6 +15,12 @@ const MainPage: FC = () => {
         <div className={classes.container}>
             <Navbar/>
             <Header/>
+            <div className={classes.test}>
+                <span>1</span>
+                <span className={classes.two}>2</span>
+                <span>3</span>
+                <span>4</span>
+            </div>
         </div>
     )
 }

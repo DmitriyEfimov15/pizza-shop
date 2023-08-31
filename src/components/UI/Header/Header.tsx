@@ -10,7 +10,6 @@ import "./animation.css"
 import { cityAPI } from "../../../services/CityService";
 import CityItem from "../../CityItem/CityItem";
 import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
-import { ICity } from "../../../types/city";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -19,28 +18,9 @@ const Header: FC = () => {
     const [cityModal, setCityModal] = useState<boolean>(false)
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
-    let {data: cities} = cityAPI.useFetchAllCitiesQuery(1)
-    const [countCities, setCountCities] = useState<number>(0)
+    const {data: cities} = cityAPI.useFetchAllCitiesQuery(0)
+    const [countCities, setCountCities] = useState<number>()
     const alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toUpperCase().split('')
-
-//    useMemo(() => {
-//         if (cities) {
-//             cities = [...cities.filter((value, index) => {cities?.indexOf(value) === index})]
-//         }
-//         else return cities;
-//     }, [cities])
-
-    const sortArray = (array: any[]) => {
-        return array.filter((value, index) => array.indexOf(value) === index)
-    }
-
-    useMemo(() => {
-        if(cities) {
-            cities = sortArray(cities)
-        }
-        else return cities;
-    }, [cities, cityModal])
-    
 
     useMemo(() => {
         if(inputValue.length > 17) {
@@ -142,7 +122,7 @@ const Header: FC = () => {
                             <h2>Вход на сайт</h2>
                             <p>Подарим подарок на день рождения, сохраним адрес доставки и расскажем об акциях</p>
                             <p className={classes.number}>Номер телефона</p>
-                            <Input text="8 (999) 999-99-99" type="text" onChange={handleInput    } value={inputValue} />
+                            <Input text="8 (999) 999-99-99" type="text" onChange={handleInput} value={inputValue} />
                             <ModalButton disabled={inputValue.length < 17}>Выслать код</ModalButton>
                             <p className={classes.agreement}>Продолжая, вы соглашаетесь <span>со сбором и обработкой персональных данных и пользовательским соглашением</span></p>
                         </form>

@@ -99,14 +99,16 @@
 }
 
 .modal__cities {
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 400px;
+    grid-template-columns: repeat(3, 1fr);
     overflow-x: hidden;
+    height: 500px;
     overflow-y: scroll;
     margin-top: 25px;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
+
 }
 
 .modal__cities::-webkit-scrollbar {
@@ -121,6 +123,7 @@
 
 .modal__cities div {
     margin: 5px;
+    position: relative;
 }
 
 .modal__cities div a {
