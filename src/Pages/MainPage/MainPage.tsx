@@ -3,6 +3,7 @@ import classes from "./MainPage.module.css"
 import { AuthContext } from "../../context/AuthContext";
 import Navbar from "../../components/UI/Navbar/Navbar";
 import Header from "../../components/UI/Header/Header";
+import Loader from "../../components/UI/Loader/Loader";
 const MainPage: FC = () => {
     // const {setIsAuth} = useContext(AuthContext)
 
@@ -15,12 +16,7 @@ const MainPage: FC = () => {
         <div className={classes.container}>
             <Navbar/>
             <Header/>
-            <div className={classes.test}>
-                <span>1</span>
-                <span className={classes.two}>2</span>
-                <span>3</span>
-                <span>4</span>
-            </div>
+            <Loader/>
         </div>
     )
 }

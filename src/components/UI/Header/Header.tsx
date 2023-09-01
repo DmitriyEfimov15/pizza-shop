@@ -10,6 +10,8 @@ import "./animation.css"
 import { cityAPI } from "../../../services/CityService";
 import CityItem from "../../CityItem/CityItem";
 import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reducerHooks";
+import { fetchCities } from "../../../store/action-creators/fetchCities";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -18,9 +20,14 @@ const Header: FC = () => {
     const [cityModal, setCityModal] = useState<boolean>(false)
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
-    const {data: cities} = cityAPI.useFetchAllCitiesQuery(0)
     const [countCities, setCountCities] = useState<number>()
-    const alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toUpperCase().split('')
+    const {cities, error} = useAppSelector(state => state.citiesReducer)
+    const dispath = useAppDispatch()
+
+    useEffect(() => {
+        setCountCities(cities?.length)
+        dispath(fetchCities())
+    }, [])
 
     useMemo(() => {
         if(inputValue.length > 17) {
@@ -37,6 +44,8 @@ const Header: FC = () => {
         setCurrentCity(event.currentTarget.innerHTML)
         setCityModal(false)
     }
+
+    
 
     return (
         <header className={classes.container}>

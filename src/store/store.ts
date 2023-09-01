@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import { cityAPI } from "../services/CityService"
+import citiesReducer from "./reducers/citiesSlice"
 
 export const rootReducer = combineReducers({
-    [cityAPI.reducerPath]: cityAPI.reducer
+    [cityAPI.reducerPath]: cityAPI.reducer,
+    citiesReducer
 })
 
 export const setupStore = () => {
