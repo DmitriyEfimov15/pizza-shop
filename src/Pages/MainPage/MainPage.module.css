@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.first {
+    background: blue;
+}
+
+.second {
+    background: green;
+}
+
+.third {
+    background: red;
+}
+
+.slider__container {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}

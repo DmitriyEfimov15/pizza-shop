@@ -6,9 +6,23 @@
     animation: in .3s reverse;
 }
 
+.question-enter-active {
+    animation: inX .3s forwards;
+}
+
 @keyframes in {
     from {
-        transform: translateY(20px);
+        transform: translateY(50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes inX {
+    from {
+        transform: translateX(20px);
     }
 
     to {

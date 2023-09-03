@@ -7,11 +7,11 @@ import Input from "../Input/Input";
 import ModalButton from "../ModalButton/ModalButton";
 import { CSSTransition } from "react-transition-group"
 import "./animation.css"
-import { cityAPI } from "../../../services/CityService";
 import CityItem from "../../CityItem/CityItem";
 import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reducerHooks";
 import { fetchCities } from "../../../store/action-creators/fetchCities";
+import Loader from "../Loader/Loader";
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -21,13 +21,22 @@ const Header: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentCity, setCurrentCity] = useState<string>('Ростов-на-Дону')
     const [countCities, setCountCities] = useState<number>()
-    const {cities, error} = useAppSelector(state => state.citiesReducer)
+    const {cities, isLoading} = useAppSelector(state => state.citiesReducer)
+    const [isCurrentCityQuestion, setIsCurrentCityQuestion] = useState<boolean>(false)
     const dispath = useAppDispatch()
+
+    const sortedCities = useMemo(() => {
+        return [...cities].filter(city => city.name.toLowerCase().includes(searchValue.toLowerCase()))
+    }, [cities, searchValue])
+
+    useEffect(() => {
+        dispath(fetchCities())
+        setTimeout(() => setIsCurrentCityQuestion(true), 2000)
+    }, [])
 
     useEffect(() => {
         setCountCities(cities?.length)
-        dispath(fetchCities())
-    }, [])
+    }, [cities])
 
     useMemo(() => {
         if(inputValue.length > 17) {
@@ -45,7 +54,10 @@ const Header: FC = () => {
         setCityModal(false)
     }
 
-    
+    const handleButtonQuestion = () => {
+        setIsCurrentCityQuestion(false)
+        setCityModal(true)
+    }
 
     return (
         <header className={classes.container}>
@@ -60,6 +72,21 @@ const Header: FC = () => {
                     </div>
 
                     <div className={classes.deliviry}>
+                        <CSSTransition
+                            in={isCurrentCityQuestion}
+                            timeout={300}
+                            classNames={'question'}
+                        >
+                            <div className={isCurrentCityQuestion ? classes.question__container : classes.unactive}>
+                                <div className={classes.question__content}>
+                                    <p>{currentCity} - это ваш город?</p>
+                                    <div className={classes.question__buttons}>
+                                        <Button color="" onClick={() => setIsCurrentCityQuestion(false)}>Да</Button>
+                                        <Button color="" onClick={handleButtonQuestion}>Нет</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </CSSTransition>
                         <h2 className={classes.deliviry__text}>Доставка пиццы <span onClick={() => setCityModal(true)}>{currentCity}</span></h2>
                         <Modal isVisible={cityModal} setIsVisible={setCityModal}>
                             <div className={classes.modal__content}>
@@ -77,10 +104,16 @@ const Header: FC = () => {
                                     <a onClick={setCityFunc}>Санкт-Петербург</a>
                                 </div>
 
-                                <div className={classes.modal__cities}>
-                                    {cities && cities.map(city => (
-                                        <CityItem key={city.name} callback={setCityFunc} name={city.name}/>
-                                    ))}
+                                <div>
+                                    {isLoading 
+                                    ? <div className={classes.modal__cities__loader}><Loader/></div>
+                                    : 
+                                        <div className={classes.modal__cities}>
+                                            {sortedCities.map(city => (
+                                                <CityItem key={city.name} callback={setCityFunc} name={city.name}/>
+                                            ))}
+                                        </div>
+                                }
                                 </div>
                             </div>
                         </Modal>

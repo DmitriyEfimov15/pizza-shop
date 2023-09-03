@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ICity } from "../../types/city"
-import {  fetchCitiesExtra } from "../action-creators/fetchCities"
 
 
 interface CityState {
