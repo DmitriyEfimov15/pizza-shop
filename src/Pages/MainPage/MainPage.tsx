@@ -10,10 +10,15 @@ const MainPage: FC = () => {
             <Header/>
 
             <div className={classes.slider__container}>
-                <Carousel>
+                <Carousel elementsToShow={4}>
                     <div className={classes.first}>item 1</div>
                     <div className={classes.second}>item 2</div>
                     <div className={classes.third}>item 3</div>
+                    <div className={classes.four}>item 4</div>
+                    <div className={classes.fif}>item 5</div>
+                    <div className={classes.six}>item 6</div>
+                    <div className={classes.seven}>item 7</div>
+                    <div className={classes.eight}>item 8</div>
                 </Carousel>
             </div>
         </div>
