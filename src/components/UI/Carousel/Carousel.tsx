@@ -4,14 +4,16 @@ import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 
 interface CarouselProps {
     children: ReactElement[];
-    elementsToShow: number
+    elementsToShow: number,
+    heightItem: string,
+    contentHeigth: string,
 }
 
 const ITEM_WIDTH = 200
 const ITEM_MARGIN = 20
 
 
-const Carousel: FC<CarouselProps> = ({children, elementsToShow}) => {
+const Carousel: FC<CarouselProps> = ({children, elementsToShow, heightItem, contentHeigth}) => {
     const [items, setItems] = useState<JSX.Element[]>([])
     const [offSet, setOffSet] = useState<number>(0)
     const [isRightArrowDisabled, setIsRightArrowDisabled] = useState<boolean>(false)
@@ -27,7 +29,7 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow}) => {
                         heigth: "100%",
                         minWidth: `${ITEM_WIDTH}px`,
                         maxWidth: `${ITEM_WIDTH}px`,
-                        height: "230px",
+                        height: heightItem,
                         margin: `0 ${ITEM_MARGIN}px 0 ${ITEM_MARGIN}px`
                     }
                 })
@@ -69,9 +71,13 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow}) => {
         })
     }
 
+    if(!items.length) {
+        return <div></div>
+    }
+
     return (
         <div className={classes.container}>
-            <div className={classes.content}>
+            <div className={classes.content} style={{height: contentHeigth}}>
                 <FaChevronLeft className={isLeftArrowDisabled ? classes.unactive : classes.arrow} onClick={handleLeftArrowClick}/>
                 <div className={classes.window} style={{
                     maxWidth: `${windowWidth}px`,

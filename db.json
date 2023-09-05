@@ -200,6 +200,42 @@
             "dough": ["традиционное", "тонкое"]
         }
     ],
+
+    "data-slider": [
+      {
+        "id": "1",
+        "img": "https://cdn.inappstory.com/story/uue/wk6/mlm/xz3n5fuvfglxtqhs4gbpszu/custom_cover/logo-350x440.jpg?v=1693901906"
+      },
+      {
+        "id": "2",
+        "img": "https://cdn.inappstory.com/story/819/5lv/s6p/ragfpyqkiqlw6k4ek3wd4zc/custom_cover/logo-350x440.jpg?v=1693578312"
+      },
+      {
+        "id": "3",
+        "img": "https://cdn.inappstory.com/story/45z/6n2/g9p/mpkex4letq5xdft0k8hj0lo/custom_cover/logo-350x440.jpg?v=1693408441"
+      },
+      {
+        "id": "4",
+        "img": "https://cdn.inappstory.com/story/caz/0mq/jnz/gjqj1sgfxw4jpgohzsece3i/custom_cover/logo-350x440.jpg?v=1693299293"
+      },
+      {
+        "id": "5",
+        "img": "https://cdn.inappstory.com/story/y8g/dcq/uov/waz9oaiokhfkx3g9orxbpfn/custom_cover/logo-350x440.jpg?v=1693295905"
+      },
+      {
+        "id": "6",
+        "img": "https://cdn.inappstory.com/story/7jg/tkf/qsm/8lxocuodlcebd47k3xuot42/custom_cover/logo-350x440.jpg?v=1692355647"
+      },
+      {
+        "id": "7",
+        "img": "https://cdn.inappstory.com/story/6k2/bdq/hpx/2igptlfcqnmrrhal9y2k8bb/custom_cover/logo-350x440.jpg?v=1692102126"
+      },
+      {
+        "id": "8",
+        "img": "https://cdn.inappstory.com/story/xkl/kqj/a3z/h7vavktgsodlrd6lxp5b1d9/custom_cover/logo-350x440.jpg?v=1692101337"
+      }
+    ],
+
     "cities": [
         {
           "coords": {
