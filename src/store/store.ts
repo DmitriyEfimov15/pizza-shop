@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import { cityAPI } from "../services/CityService"
 import citiesReducer from "./reducers/citiesSlice"
+import sliderReducer from "./reducers/sliderSlice"
 
 export const rootReducer = combineReducers({
     // [SliderAPI.reducerPath]: SliderAPI.reducer,
     [cityAPI.reducerPath]: cityAPI.reducer,
-    citiesReducer
+    citiesReducer,
+    sliderReducer,
 })
 
 export const setupStore = () => {

@@ -1,19 +1,21 @@
 import React, {FC, ReactElement, Children, useEffect, useState, cloneElement, useMemo} from "react";
 import classes from "./Carousel.module.css"
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
+import Loader from "../Loader/Loader";
 
 interface CarouselProps {
     children: ReactElement[];
     elementsToShow: number,
     heightItem: string,
     contentHeigth: string,
+    isLoading: boolean
 }
 
-const ITEM_WIDTH = 200
+const ITEM_WIDTH = 210
 const ITEM_MARGIN = 20
 
 
-const Carousel: FC<CarouselProps> = ({children, elementsToShow, heightItem, contentHeigth}) => {
+const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, isLoading}) => {
     const [items, setItems] = useState<JSX.Element[]>([])
     const [offSet, setOffSet] = useState<number>(0)
     const [isRightArrowDisabled, setIsRightArrowDisabled] = useState<boolean>(false)
@@ -25,17 +27,17 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, heightItem, cont
         setItems(
             Children.map(children, (child) => {
                 return cloneElement(child, {
-                    style: {
-                        heigth: "100%",
-                        minWidth: `${ITEM_WIDTH}px`,
-                        maxWidth: `${ITEM_WIDTH}px`,
-                        height: heightItem,
-                        margin: `0 ${ITEM_MARGIN}px 0 ${ITEM_MARGIN}px`
-                    }
+                    // style: {
+                    //     heigth: "100%",
+                    //     minWidth: `${ITEM_WIDTH}px`,
+                    //     maxWidth: `${ITEM_WIDTH}px`,
+                    //     height: heightItem,
+                    //     margin: `0 ${ITEM_MARGIN}px 0 ${ITEM_MARGIN}px`
+                    // }
                 })
             })
         )
-    }, [])
+    }, [isLoading])
 
     useMemo(() => {
         if(offSet === maxOffSet) {
@@ -72,7 +74,7 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, heightItem, cont
     }
 
     if(!items.length) {
-        return <div></div>
+        return <Loader/>
     }
 
     return (
