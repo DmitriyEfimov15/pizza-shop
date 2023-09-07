@@ -16,3 +16,10 @@
 .border__img{
     border: 3px solid #FF4F00;
 }
+
+.container__modal {
+    min-width: 578px;
+    min-width: 578px;
+    margin: 0 10px 0 10px;
+    height: 100%;
+}

@@ -6,20 +6,21 @@ import Modal from '../UI/Modal/Modal'
 
 interface SliderItemProps {
     sliderItem: ISlider,
-    isModal: boolean
+    isModal: boolean,
+    callback?: (arg: string) => void;
 }
 
-const SliderItem: FC<SliderItemProps> = ({sliderItem, isModal}) => {
+const SliderItem: FC<SliderItemProps> = ({sliderItem, isModal, callback}) => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
 
     const handleImgClick = () => {
         setIsChecked(true)
     }
-
+    // onClick={() => callback(sliderItem.id)}
     return (
-        <div className={isModal ? classes.container__modal :classes.container}>
-            <div className={classes.content}>
-                <img onClick={handleImgClick} className={isChecked ? classes.img : classes.border__img} src={sliderItem.img} />
+        <div className={isModal ? classes.container__modal : classes.container}>
+            <div onClick={handleImgClick} className={classes.content}>
+                <img  className={isChecked || isModal ? classes.img : classes.border__img} src={sliderItem.img} />
             </div>
         </div>
     )

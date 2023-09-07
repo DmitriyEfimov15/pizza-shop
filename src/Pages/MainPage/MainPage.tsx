@@ -8,14 +8,20 @@ import { cityAPI } from "../../services/CityService";
 import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import { ISlider } from "../../types/Slider";
+import Modal from "../../components/UI/Modal/Modal";
 const MainPage: FC = () => {
     // const {data: sliderList} = cityAPI.useFetchAllSliderDataQuery(0)
     const dispatch = useAppDispatch()
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
     useEffect(() => {
         dispatch(fetchSlider())
     }, [])
+
+    const handleImgClick = (id: string) => {
+        setIsModalVisible(true) 
+    }
     return (
         <div className={classes.container}>
             <Navbar/>
@@ -24,9 +30,18 @@ const MainPage: FC = () => {
             <div className={classes.slider__container}>
                 <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={4}>
                     {sliderList.map(item => (
-                        <SliderItem isModal={false} sliderItem={item} key={item.id}/>
+                        <SliderItem callback={handleImgClick} isModal={false} sliderItem={item} key={item.id}/>
                     ))}
                 </Carousel>
+                <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
+                    <div className={classes.modal__content}>
+                        <Carousel isModal={true} isLoading={isLoading} contentHeigth="730px" heightItem="250px" elementsToShow={1}>
+                            {sliderList.map(item => (
+                                <SliderItem isModal={true} sliderItem={item} key={item.id}/>
+                            ))}
+                        </Carousel>
+                    </div>
+                </Modal>
             </div>
         </div>
     )

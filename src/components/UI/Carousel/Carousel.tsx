@@ -8,14 +8,15 @@ interface CarouselProps {
     elementsToShow: number,
     heightItem: string,
     contentHeigth: string,
-    isLoading: boolean
+    isLoading: boolean,
+    isModal?: boolean,
+    modalOffSet?: number
 }
-
-const ITEM_WIDTH = 210
 const ITEM_MARGIN = 20
 
 
-const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, isLoading}) => {
+const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, isLoading, isModal}) => {
+    const ITEM_WIDTH = isModal ? 558 : 210
     const [items, setItems] = useState<JSX.Element[]>([])
     const [offSet, setOffSet] = useState<number>(0)
     const [isRightArrowDisabled, setIsRightArrowDisabled] = useState<boolean>(false)
@@ -26,18 +27,14 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
     useEffect(() => {
         setItems(
             Children.map(children, (child) => {
-                return cloneElement(child, {
-                    // style: {
-                    //     heigth: "100%",
-                    //     minWidth: `${ITEM_WIDTH}px`,
-                    //     maxWidth: `${ITEM_WIDTH}px`,
-                    //     height: heightItem,
-                    //     margin: `0 ${ITEM_MARGIN}px 0 ${ITEM_MARGIN}px`
-                    // }
-                })
+                return cloneElement(child)
             })
         )
     }, [isLoading])
+
+    useEffect(() => {
+        setOffSet(1)
+    }, [])
 
     useMemo(() => {
         if(offSet === maxOffSet) {

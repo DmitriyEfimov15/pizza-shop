@@ -12,7 +12,6 @@
 
 .window {
     height: 100%;
-    /* width: 720px; */
     overflow: hidden;
 }
 
@@ -28,11 +27,13 @@
 
 .arrow {
     display: block;
+    opacity: 1;
     cursor: pointer;
     font-size: 40px;
     color: #FF4F00;
 }
 
 .unactive {
-    display: none;
+    /* display: none; */
+    opacity: 0;
 }
