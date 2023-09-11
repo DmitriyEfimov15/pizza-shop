@@ -57,12 +57,26 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
 
     useEffect(() => {
         if(isModal && id) {
-            setOffSet((currentOffset) => {
+            setOffSet(() => {
                 const newOffSet = 0 - (windowWidth * (parseInt(id) - 1))                
                 return newOffSet;
             })
+
+            // const slider = setInterval(() => {
+            //     setOffSet((currentOffset) => {
+            //         const newOffset = currentOffset - windowWidth
+            //         console.log(newOffset);
+            //         return newOffset
+            //     })
+            // }, 1000)
+            
+            // if(offSet === maxOffSet) {
+            //     clearInterval(slider)
+            //     console.log(offSet);
+                
+            // }
         }
-    }, [id])
+    }, [id, isModal])
 
     const handleLeftArrowClick = () => {
         setOffSet((currentOffset) => {
@@ -74,6 +88,8 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
     const handleRightArrowClick = () => {
         setOffSet((currentOffset) => {
             const newOffSet = currentOffset - windowWidth
+            console.log(newOffSet);
+            
             return Math.max(newOffSet, maxOffSet);
         })
     }

@@ -21,6 +21,7 @@ const SliderItem: FC<SliderItemProps> = ({sliderItem, isModal, callback}) => {
     return (
         <div onClick={handleImgClick} className={isModal ? classes.container__modal : classes.container}>
             <div className={classes.content}>
+                <div className={isModal ? classes.time : classes.unactive}></div>
                 <img className={isChecked || isModal ? classes.img : classes.border__img} src={sliderItem.img} />
             </div>
         </div>
