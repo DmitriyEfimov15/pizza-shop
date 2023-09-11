@@ -2,6 +2,7 @@ import React, {FC, ReactElement, Children, useEffect, useState, cloneElement, us
 import classes from "./Carousel.module.css"
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 import Loader from "../Loader/Loader";
+import { current } from "@reduxjs/toolkit";
 
 interface CarouselProps {
     children: ReactElement[];
@@ -10,19 +11,19 @@ interface CarouselProps {
     contentHeigth: string,
     isLoading: boolean,
     isModal?: boolean,
-    modalOffSet?: number
+    id?: string
 }
 const ITEM_MARGIN = 20
 
 
-const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, isLoading, isModal}) => {
+const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, isLoading, isModal, id}) => {
     const ITEM_WIDTH = isModal ? 558 : 210
     const [items, setItems] = useState<JSX.Element[]>([])
     const [offSet, setOffSet] = useState<number>(0)
     const [isRightArrowDisabled, setIsRightArrowDisabled] = useState<boolean>(false)
     const [isLeftArrowDisabled, setIsLeftArrowDisabled] = useState<boolean>(true)
     const windowWidth = elementsToShow * ITEM_WIDTH + (ITEM_MARGIN * 2 * elementsToShow)
-    const maxOffSet = -(windowWidth * ((Math.ceil(items.length / elementsToShow)) - 1))
+    const maxOffSet = -(windowWidth * ((Math.ceil(items.length / elementsToShow)) - 1)) 
 
     useEffect(() => {
         setItems(
@@ -33,7 +34,7 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
     }, [isLoading])
 
     useEffect(() => {
-        setOffSet(1)
+        // setOffSet(0)
     }, [])
 
     useMemo(() => {
@@ -54,6 +55,14 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
         }
     }, [offSet])
 
+    useEffect(() => {
+        if(isModal && id) {
+            setOffSet((currentOffset) => {
+                const newOffSet = 0 - (windowWidth * (parseInt(id) - 1))                
+                return newOffSet;
+            })
+        }
+    }, [id])
 
     const handleLeftArrowClick = () => {
         setOffSet((currentOffset) => {
@@ -65,7 +74,6 @@ const Carousel: FC<CarouselProps> = ({children, elementsToShow, contentHeigth, i
     const handleRightArrowClick = () => {
         setOffSet((currentOffset) => {
             const newOffSet = currentOffset - windowWidth
-
             return Math.max(newOffSet, maxOffSet);
         })
     }

@@ -10,8 +10,8 @@ import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import { ISlider } from "../../types/Slider";
 import Modal from "../../components/UI/Modal/Modal";
 const MainPage: FC = () => {
-    // const {data: sliderList} = cityAPI.useFetchAllSliderDataQuery(0)
     const dispatch = useAppDispatch()
+    const [sliderItemID, setSliderItemID] = useState<string>("1")
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
@@ -20,6 +20,7 @@ const MainPage: FC = () => {
     }, [])
 
     const handleImgClick = (id: string) => {
+        setSliderItemID(id)
         setIsModalVisible(true) 
     }
     return (
@@ -35,7 +36,7 @@ const MainPage: FC = () => {
                 </Carousel>
                 <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
                     <div className={classes.modal__content}>
-                        <Carousel isModal={true} isLoading={isLoading} contentHeigth="730px" heightItem="250px" elementsToShow={1}>
+                        <Carousel id={sliderItemID} isModal={true} isLoading={isLoading} contentHeigth="730px" heightItem="250px" elementsToShow={1}>
                             {sliderList.map(item => (
                                 <SliderItem isModal={true} sliderItem={item} key={item.id}/>
                             ))}

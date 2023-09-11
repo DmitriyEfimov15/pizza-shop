@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react'
 import classes from "./Slider.module.css"
-import { cityAPI } from '../../services/CityService'
 import { ISlider } from '../../types/Slider'
-import Modal from '../UI/Modal/Modal'
 
 interface SliderItemProps {
     sliderItem: ISlider,
@@ -13,14 +11,17 @@ interface SliderItemProps {
 const SliderItem: FC<SliderItemProps> = ({sliderItem, isModal, callback}) => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
 
-    const handleImgClick = () => {
+    const handleImgClick: React.MouseEventHandler<HTMLDivElement> = () => {
+        if (callback) {
+            callback(sliderItem.id)
+        }
         setIsChecked(true)
     }
-    // onClick={() => callback(sliderItem.id)}
+    
     return (
-        <div className={isModal ? classes.container__modal : classes.container}>
-            <div onClick={handleImgClick} className={classes.content}>
-                <img  className={isChecked || isModal ? classes.img : classes.border__img} src={sliderItem.img} />
+        <div onClick={handleImgClick} className={isModal ? classes.container__modal : classes.container}>
+            <div className={classes.content}>
+                <img className={isChecked || isModal ? classes.img : classes.border__img} src={sliderItem.img} />
             </div>
         </div>
     )
