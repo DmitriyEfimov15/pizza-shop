@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react"
 import classes from "./Button.module.css"
 
-interface ButtonProps {
+interface ButtonProps{
     children: ReactNode;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     color: string;

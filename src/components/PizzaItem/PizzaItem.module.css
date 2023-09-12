@@ -1,0 +1,43 @@
+.container {
+    height: 450px;
+    width: 300px;
+    font-family: "Montserrat", sans-serif ;
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 5px 0 10px 0;
+    font-size: 21px;
+}
+
+.discription {
+    font-size: 15px;
+    color: #5c6370;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button p span {
+    font-size: 25px;
+    font-weight: 700px;
+}
+
+.img img {
+    width: 230px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.img img:hover {
+    transform: translateY(5px);
+}

@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import { ISlider } from "../../types/Slider";
 import Modal from "../../components/UI/Modal/Modal";
+import PizzaList from "../../components/PizzaList/PizzaList";
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
     const [sliderItemID, setSliderItemID] = useState<string>("1")
@@ -29,7 +30,7 @@ const MainPage: FC = () => {
             <Header/>
 
             <div className={classes.slider__container}>
-                <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={4}>
+                <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={6}>
                     {sliderList.map(item => (
                         <SliderItem callback={handleImgClick} isModal={false} sliderItem={item} key={item.id}/>
                     ))}
@@ -44,6 +45,7 @@ const MainPage: FC = () => {
                     </div>
                 </Modal>
             </div>
+            <PizzaList/>
         </div>
     )
 }
