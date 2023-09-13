@@ -1,21 +1,20 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
-import { cityAPI } from "../services/CityService"
+import { pizzaAPI } from "../services/PizzaBacketService"
 import citiesReducer from "./reducers/citiesSlice"
 import sliderReducer from "./reducers/sliderSlice"
 import pizzaReducer from "./reducers/pizzaSlice"
 
 export const rootReducer = combineReducers({
-    // [SliderAPI.reducerPath]: SliderAPI.reducer,
-    [cityAPI.reducerPath]: cityAPI.reducer,
+    [pizzaAPI.reducerPath]: pizzaAPI.reducer,
     citiesReducer,
     sliderReducer,
-    pizzaReducer
+    pizzaReducer,
 })
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cityAPI.middleware)
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pizzaAPI.middleware)
     })
 }
 

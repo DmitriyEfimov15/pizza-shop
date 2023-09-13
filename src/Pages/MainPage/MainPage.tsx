@@ -4,17 +4,20 @@ import Navbar from "../../components/UI/Navbar/Navbar";
 import Header from "../../components/UI/Header/Header";
 import Carousel from "../../components/UI/Carousel/Carousel";
 import SliderItem from "../../components/SliderItem/SliderItem";
-import { cityAPI } from "../../services/CityService";
+import { pizzaAPI } from "../../services/PizzaBacketService";
 import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
-import { ISlider } from "../../types/Slider";
 import Modal from "../../components/UI/Modal/Modal";
 import PizzaList from "../../components/PizzaList/PizzaList";
+
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
     const [sliderItemID, setSliderItemID] = useState<string>("1")
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
+    const {data} = pizzaAPI.useFetchAllPizzasQuery(0)
+    console.log(data);
+    
 
     useEffect(() => {
         dispatch(fetchSlider())
@@ -46,6 +49,7 @@ const MainPage: FC = () => {
                 </Modal>
             </div>
             <PizzaList/>
+            <div></div>
         </div>
     )
 }
