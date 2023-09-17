@@ -1,10 +1,9 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState, useRef, useMemo} from "react";
 import classes from "./MainPage.module.css"
 import Navbar from "../../components/UI/Navbar/Navbar";
 import Header from "../../components/UI/Header/Header";
 import Carousel from "../../components/UI/Carousel/Carousel";
 import SliderItem from "../../components/SliderItem/SliderItem";
-import { pizzaAPI } from "../../services/PizzaBacketService";
 import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import Modal from "../../components/UI/Modal/Modal";
@@ -15,9 +14,18 @@ const MainPage: FC = () => {
     const [sliderItemID, setSliderItemID] = useState<string>("1")
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
-    const {data} = pizzaAPI.useFetchAllPizzasQuery(0)
-    console.log(data);
+    const [elementsToShow, setElementToShow] = useState<number>(Math.ceil(window.innerWidth / 335))
     
+    useEffect(() => {
+        const handleResize= () => {
+            setElementToShow(Math.ceil(window.innerWidth / 335))
+        }
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     useEffect(() => {
         dispatch(fetchSlider())
@@ -33,7 +41,7 @@ const MainPage: FC = () => {
             <Header/>
 
             <div className={classes.slider__container}>
-                <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={6}>
+                <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={elementsToShow}>
                     {sliderList.map(item => (
                         <SliderItem callback={handleImgClick} isModal={false} sliderItem={item} key={item.id}/>
                     ))}
@@ -49,7 +57,6 @@ const MainPage: FC = () => {
                 </Modal>
             </div>
             <PizzaList/>
-            <div></div>
         </div>
     )
 }

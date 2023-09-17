@@ -358,6 +358,23 @@
         "тонкое"
       ],
       "userId": "1"
+    },
+    {
+      "id": 7,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_292x292.webp",
+      "title": "Чоризо фреш",
+      "discription": "Фирменный томатный соус, моцарелла, острая чоризо, сладкий перец",
+      "price": "289",
+      "sizes": [
+        "25",
+        "30",
+        "35"
+      ],
+      "dough": [
+        "традиционное",
+        "тонкое"
+      ],
+      "userId": "1"
     }
   ],
   "cities": [

@@ -1,16 +1,15 @@
 .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    width: 1280px;
     font-family: "Montserrat", sans-serif;
     padding: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
 }
 
 .left {
@@ -275,4 +274,35 @@
 
 .unactive {
     display: none;
+}
+
+@media (max-width: 1350px) {
+    .container {
+        width: 1000px;
+    }
+
+    .modal__content {
+        width: 800px;
+    }
+
+    .modal__cities div a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 960px) {
+    .modal__content {
+        width: 600px;
+    }
+}
+
+@media (max-width: 1060px) {
+    .container {
+        width: 800px;
+    }
+
+    .deliviry__text,
+    .img__text h2 {
+        font-size: 20px;
+    }
 }

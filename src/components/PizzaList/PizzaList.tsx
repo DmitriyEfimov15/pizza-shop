@@ -3,10 +3,11 @@ import classes from "./PizzaList.module.css"
 import { useAppDispatch, useAppSelector } from '../../hooks/reducerHooks'
 import { fetchPizzaz } from '../../store/action-creators/fetchPizza'
 import PizzaItem from '../PizzaItem/PizzaItem'
+import { pizzaListAPI } from '../../services/PizzaService'
 
 const PizzaList: FC = () => {
     const dispatch = useAppDispatch()
-    const {pizzaz} = useAppSelector(state => state.pizzaReducer)
+    const {data: pizzas} = pizzaListAPI.useFetchAllPizzaListQuery(null)
 
     useEffect(() => {
         dispatch(fetchPizzaz())
@@ -19,7 +20,7 @@ const PizzaList: FC = () => {
                     <h2>Пицца</h2>
                 </div>
                 <div className={classes.list}>
-                    {pizzaz.map(pizza => (
+                    {pizzas && pizzas.map(pizza => (
                         <PizzaItem pizzaItem={pizza} key={pizza.id}/>
                     ))}
                 </div>

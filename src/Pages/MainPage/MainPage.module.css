@@ -2,38 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-}
 
-.first {
-    background: blue;
-}
-
-.second {
-    background: green;
-}
-
-.third {
-    background: red;
-}
-
-.four {
-    background: blue;
-}
-
-.fif {
-    background: green;
-}
-
-.six {
-    background: red;
-}
-
-.seven {
-    background: saddlebrown;
-}
-
-.eight {
-    background: black;
 }
 
 .slider__container {
