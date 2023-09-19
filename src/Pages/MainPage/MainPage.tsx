@@ -8,27 +8,31 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import Modal from "../../components/UI/Modal/Modal";
 import PizzaList from "../../components/PizzaList/PizzaList";
+import PizzaModalItem from "../../components/PizzaModalItem/PizzaModalItem";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
     const [sliderItemID, setSliderItemID] = useState<string>("1")
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
-    const [elementsToShow, setElementToShow] = useState<number>(Math.ceil(window.innerWidth / 335))
+    const [elementsToShow, setElementToShow] = useState<number>(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
     
     useEffect(() => {
         const handleResize= () => {
-            setElementToShow(Math.ceil(window.innerWidth / 335))
+            setElementToShow(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
         }
         window.addEventListener("resize", handleResize)
-
+        
         return () => {
             window.removeEventListener('resize', handleResize)
         }
+
     }, [])
 
     useEffect(() => {
         dispatch(fetchSlider())
+        console.log(window.innerWidth);
+        
     }, [])
 
     const handleImgClick = (id: string) => {

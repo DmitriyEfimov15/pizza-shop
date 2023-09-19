@@ -25,6 +25,8 @@ const Modal: FC<ModalProps> = ({children, isVisible, setIsVisible}) => {
                 in={isVisible}
                 classNames={'modal'}
                 timeout={500}
+                mountOnEnter
+                unmountOnExit
             >
                 <div ref={modalRef} className={classes.content} onClick={(e) => e.stopPropagation()}>
                     {children}
