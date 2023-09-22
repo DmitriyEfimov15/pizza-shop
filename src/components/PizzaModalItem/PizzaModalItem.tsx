@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import classes from "./PizzaModalItem.module.css"
 import Modal from '../UI/Modal/Modal';
 import { IPizza } from '../../types/Pizza';
@@ -10,18 +10,22 @@ interface PizzaModalItemProps {
 }
 
 const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVisible}) => {
-    const [inputValue, setInputValue] = useState<string>('')
-    console.log(inputValue);
-    
+    const [inputValue, setInputValue] = useState<string>(pizzaItem.sizes[0])
+    const [offset, setOffset] = useState<number>(0)
+    useEffect(() => {
+        setOffset(100 * pizzaItem.sizes.indexOf(inputValue) )
+    }, [inputValue])
 
     return (
         <Modal setIsVisible={setIsVisible} isVisible={isVisible}>
            <div className={classes.container}>
             <div className={classes.left}>
                     <div className={classes.imageurl}>
-                        <img style={{width: `80%`}} src={pizzaItem.imageUrl} alt={pizzaItem.title} />
-                        <div className={classes.big}></div>
-                        <div className={classes.middle}></div>
+                        <img style={{width: `${parseInt(inputValue) * 2.5}%`}} src={pizzaItem.imageUrl} alt={pizzaItem.title} />
+                        <div className={classes.circles}>
+                            <div className={classes.big}></div>
+                            <div className={classes.middle}></div>  
+                        </div>
                     </div>
                 </div>
 
@@ -35,12 +39,16 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
                     <div className={classes.discription}>
                         <p>{pizzaItem.discription}</p>
                     </div>
-                    <div className={classes.input__checkboxes}>
+                    <div className={classes.input__radio}>
+                        <div className={classes.switch__slider} style={{
+                            width: "33.3%",
+                            transform: `translateX(${offset}%)`
+                        }}/>
                         {pizzaItem.sizes && pizzaItem.sizes.map(size => (
-                            <label key={size} className={classes.label}>
-                                {size}
-                                <input type='radio' className={classes.input} value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                            </label>
+                            <div key={size} className={classes.input__box}>
+                                <label htmlFor={`${size}`} className={classes.label}>{size}см</label>
+                                <input checked={size === inputValue ? true : false} type='radio' name='pizza' value={inputValue} onChange={(e) => setInputValue(size)} id={`${size}`} />
+                            </div>
                         ))}
                     </div>
                 </div>

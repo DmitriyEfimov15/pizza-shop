@@ -14,4 +14,5 @@
 
 .modal__content {
     min-height: 700px;
+    padding: 32px;
 }

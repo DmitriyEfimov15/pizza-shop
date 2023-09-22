@@ -10,6 +10,23 @@
 
 .right {
     width: 40%;
+    background: rgb(252, 252, 252);
+    font-family: "Montserrat", sans-serif;
+    padding: 32px 30px;
+    border-radius: 0 20px 20px 0;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.info__pizza {
+    color: rgb(92, 99, 112);
+    margin: 7px 0;
+}
+
+.discription {
+    margin: 7px 0;
 }
 
 .imageurl {
@@ -25,6 +42,18 @@
     transition: .5s;
 }
 
+.circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -10px;
+    top: -10px;
+    /* transform:translate(-50%, 0); */
+}
+
 .big, .middle {
     position: absolute;
     border: 3px dashed gray;
@@ -34,11 +63,61 @@
 }
 
 .big {
-    width: 90%;
-    height: 90%;
+    width: 75%;
+    height: 75%;
 }
 
 .middle {
-    width: 80%;
-    height: 80%;
+    width: 65%;
+    height: 65%;
 }
+
+.input__radio {
+    display: flex;
+    margin: 20px 0;
+    border-radius: 10px;
+    background: rgb(243, 243, 247);
+    position: relative;
+    overflow: hidden;
+}
+
+.input__radio input {
+    display: none;
+}
+
+.input__box {
+    display: flex;
+    flex: 1 1 0%;    
+
+}
+
+.label {
+    text-align: center;
+    display: inline-block;
+    /* width: 100px; */
+    height: 40px;
+    flex: 1 1 0%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.switch__slider {
+    position: absolute;
+    background: #fff;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2px;
+    z-index: 0;
+    border-radius: 20px;
+    transition:  transform ease-in 200ms;
+}
+
+/* .input__box:first-child .label {
+    border-radius:  10px 0 0 10px;
+}
+
+.input__box:last-child .label{
+    border-radius: 0 10px 10px 0;
+} */

@@ -245,6 +245,7 @@
 
 .form {
     max-width: 450px;
+    padding: 32px;
 }
 
 .form h2{

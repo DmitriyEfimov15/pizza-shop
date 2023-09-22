@@ -31,8 +31,6 @@ const MainPage: FC = () => {
 
     useEffect(() => {
         dispatch(fetchSlider())
-        console.log(window.innerWidth);
-        
     }, [])
 
     const handleImgClick = (id: string) => {
