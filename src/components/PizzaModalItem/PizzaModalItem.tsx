@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from 'react'
 import classes from "./PizzaModalItem.module.css"
 import Modal from '../UI/Modal/Modal';
 import { IPizza } from '../../types/Pizza';
+import Switch from '../UI/Switch/Switch';
+import Button from '../UI/Button/Button';
 
 interface PizzaModalItemProps {
     isVisible: boolean,
@@ -11,10 +13,7 @@ interface PizzaModalItemProps {
 
 const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVisible}) => {
     const [inputValue, setInputValue] = useState<string>(pizzaItem.sizes[0])
-    const [offset, setOffset] = useState<number>(0)
-    useEffect(() => {
-        setOffset(100 * pizzaItem.sizes.indexOf(inputValue) )
-    }, [inputValue])
+    const [currentDough, setCurrentDough] = useState<string>("традиционное")
 
     return (
         <Modal setIsVisible={setIsVisible} isVisible={isVisible}>
@@ -30,26 +29,30 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
                 </div>
 
                 <div className={classes.right}>
-                    <div className={classes.title}>
-                        <p>{pizzaItem.title}</p>
+                    <div className={classes.right__top}>
+                        <div className={classes.title}>
+                            <p>{pizzaItem.title}</p>
+                        </div>
+                        <div className={classes.info__pizza}>
+                            <p>{inputValue} см, {currentDough} тесто</p>
+                        </div>
+                        <div className={classes.discription}>
+                            <p>{pizzaItem.discription}</p>
+                        </div>
+                        <div className={classes.input__radio}>
+                            {pizzaItem.sizes && pizzaItem.sizes.map(size => (
+                                <Switch key={size} array={pizzaItem.sizes} labelText='см' stirng={size} stateValue={inputValue} setStateValue={setInputValue}/>
+                            ))}
+                        </div>
+                        <div className={classes.input__radio}>
+                            {pizzaItem.dough.length !== 1 && pizzaItem.dough.map(dough => (
+                                <Switch key={dough} array={pizzaItem.dough} stirng={dough} stateValue={currentDough} setStateValue={setCurrentDough}/>
+                            ))}
+                        </div>
                     </div>
-                    <div className={classes.info__pizza}>
-                        <p>{pizzaItem.sizes[1]} см, тут тесто</p>
-                    </div>
-                    <div className={classes.discription}>
-                        <p>{pizzaItem.discription}</p>
-                    </div>
-                    <div className={classes.input__radio}>
-                        <div className={classes.switch__slider} style={{
-                            width: "33.3%",
-                            transform: `translateX(${offset}%)`
-                        }}/>
-                        {pizzaItem.sizes && pizzaItem.sizes.map(size => (
-                            <div key={size} className={classes.input__box}>
-                                <label htmlFor={`${size}`} className={classes.label}>{size}см</label>
-                                <input checked={size === inputValue ? true : false} type='radio' name='pizza' value={inputValue} onChange={(e) => setInputValue(size)} id={`${size}`} />
-                            </div>
-                        ))}
+
+                    <div className={classes.button__box}>
+                        <Button color='orange'>Добавить в корзину {pizzaItem.price}₽</Button>
                     </div>
                 </div>
            </div>

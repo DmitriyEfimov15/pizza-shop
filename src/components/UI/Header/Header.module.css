@@ -58,6 +58,7 @@
 .modal__content {
     font-family: "Montserrat", sans-serif;
     width: 1100px;
+    padding: 32px;
 }
 
 .modal__header {
@@ -162,7 +163,6 @@
 .question__buttons button{
     margin-right: 10px;
 }
-
 .info__window {
     position: absolute;
     background: #332f2c;

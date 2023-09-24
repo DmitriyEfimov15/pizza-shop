@@ -14,6 +14,9 @@
     font-family: "Montserrat", sans-serif;
     padding: 32px 30px;
     border-radius: 0 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title {
@@ -81,43 +84,7 @@
     overflow: hidden;
 }
 
-.input__radio input {
-    display: none;
+.button__box button{
+    width: 100%;
+    padding: 20px;
 }
-
-.input__box {
-    display: flex;
-    flex: 1 1 0%;    
-
-}
-
-.label {
-    text-align: center;
-    display: inline-block;
-    /* width: 100px; */
-    height: 40px;
-    flex: 1 1 0%;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.switch__slider {
-    position: absolute;
-    background: #fff;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 2px;
-    z-index: 0;
-    border-radius: 20px;
-    transition:  transform ease-in 200ms;
-}
-
-/* .input__box:first-child .label {
-    border-radius:  10px 0 0 10px;
-}
-
-.input__box:last-child .label{
-    border-radius: 0 10px 10px 0;
-} */
