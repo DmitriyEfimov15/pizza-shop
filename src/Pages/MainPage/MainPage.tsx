@@ -9,6 +9,8 @@ import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import Modal from "../../components/UI/Modal/Modal";
 import PizzaList from "../../components/PizzaList/PizzaList";
 import PizzaModalItem from "../../components/PizzaModalItem/PizzaModalItem";
+import Navigation from "../../components/UI/Navigation/Navigation";
+import Backet from "../../components/UI/Backet/Backet";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
@@ -16,6 +18,7 @@ const MainPage: FC = () => {
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
     const [elementsToShow, setElementToShow] = useState<number>(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
+    const [isBacketVisible, setIsBacketVisible] = useState<boolean>(true)
     
     useEffect(() => {
         const handleResize= () => {
@@ -41,7 +44,8 @@ const MainPage: FC = () => {
         <div className={classes.container}>
             <Navbar/>
             <Header/>
-
+            <Backet isVisible={isBacketVisible} setIsVisible={setIsBacketVisible}></Backet>
+            <Navigation setVisibleBacket={setIsBacketVisible}/>
             <div className={classes.slider__container}>
                 <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={elementsToShow}>
                     {sliderList.map(item => (
@@ -58,7 +62,7 @@ const MainPage: FC = () => {
                     </div>
                 </Modal>
             </div>
-            <PizzaList/>
+            <PizzaList idElement="pizza"/>
         </div>
     )
 }

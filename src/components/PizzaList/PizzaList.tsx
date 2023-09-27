@@ -5,7 +5,11 @@ import { fetchPizzaz } from '../../store/action-creators/fetchPizza'
 import PizzaItem from '../PizzaItem/PizzaItem'
 import { pizzaListAPI } from '../../services/PizzaService'
 
-const PizzaList: FC = () => {
+interface PizzaListProps { 
+    idElement?: string
+}
+
+const PizzaList: FC<PizzaListProps> = ({idElement}) => {
     const dispatch = useAppDispatch()
     const {data: pizzas} = pizzaListAPI.useFetchAllPizzaListQuery(null)
 
@@ -14,7 +18,7 @@ const PizzaList: FC = () => {
     }, [])
 
     return (
-        <div className={classes.container}>
+        <div id={idElement} className={classes.container}>
            <div className={classes.content}>
                 <div className={classes.title}>
                     <h2>Пицца</h2>

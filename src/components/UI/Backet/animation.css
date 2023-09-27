@@ -1,0 +1,13 @@
+.backet-enter-active {
+    animation: in_right .5s forwards;
+}
+
+@keyframes in_right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
