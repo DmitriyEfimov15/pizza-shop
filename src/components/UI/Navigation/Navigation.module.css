@@ -1,0 +1,26 @@
+.container {
+    width: 1245px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.nav a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav a:hover {
+    color: #FF4F00;
+}
+
+.button__box button {
+    font-size: 20px;
+}

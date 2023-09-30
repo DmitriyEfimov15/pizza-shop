@@ -18,8 +18,10 @@ const MainPage: FC = () => {
     const {data: sliderList, isLoading} = useAppSelector(state => state.sliderReducer)
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
     const [elementsToShow, setElementToShow] = useState<number>(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
-    const [isBacketVisible, setIsBacketVisible] = useState<boolean>(true)
-    
+    const [isBacketVisible, setIsBacketVisible] = useState<boolean>(false)
+    const el = useRef<HTMLDivElement>(null)
+    const observer = useRef<IntersectionObserver | null>(null)
+    const [isIntersectingNav, setIsIntersectingNav] = useState<boolean>(true)
     useEffect(() => {
         const handleResize= () => {
             setElementToShow(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
@@ -40,12 +42,26 @@ const MainPage: FC = () => {
         setSliderItemID(id)
         setIsModalVisible(true) 
     }
+
+    // useEffect(() => {
+        if(observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting === false) {
+                setIsIntersectingNav(false)
+            }
+        })
+        if (el.current) observer.current.observe(el.current)
+
+    // }, [isLoading])
+    
     return (
         <div className={classes.container}>
             <Navbar/>
             <Header/>
             <Backet isVisible={isBacketVisible} setIsVisible={setIsBacketVisible}></Backet>
-            <Navigation setVisibleBacket={setIsBacketVisible}/>
+            <div ref={el}>
+                <Navigation isInteresting={isIntersectingNav} setVisibleBacket={setIsBacketVisible}/>  
+            </div>
             <div className={classes.slider__container}>
                 <Carousel isLoading={isLoading} contentHeigth="310px" heightItem="250px" elementsToShow={elementsToShow}>
                     {sliderList.map(item => (
