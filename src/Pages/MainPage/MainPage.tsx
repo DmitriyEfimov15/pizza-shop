@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState, useRef, useMemo} from "react";
+import React, {FC, useEffect, useState, useRef, useLayoutEffect} from "react";
 import classes from "./MainPage.module.css"
 import Navbar from "../../components/UI/Navbar/Navbar";
 import Header from "../../components/UI/Header/Header";
@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reducerHooks";
 import { fetchSlider } from "../../store/action-creators/fetchSlider";
 import Modal from "../../components/UI/Modal/Modal";
 import PizzaList from "../../components/PizzaList/PizzaList";
-import PizzaModalItem from "../../components/PizzaModalItem/PizzaModalItem";
 import Navigation from "../../components/UI/Navigation/Navigation";
 import Backet from "../../components/UI/Backet/Backet";
 
@@ -20,8 +19,8 @@ const MainPage: FC = () => {
     const [elementsToShow, setElementToShow] = useState<number>(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
     const [isBacketVisible, setIsBacketVisible] = useState<boolean>(false)
     const el = useRef<HTMLDivElement>(null)
-    const observer = useRef<IntersectionObserver | null>(null)
     const [isIntersectingNav, setIsIntersectingNav] = useState<boolean>(true)
+
     useEffect(() => {
         const handleResize= () => {
             setElementToShow(Math.ceil((window.innerWidth - (window.innerWidth * 0.5)) / 230))
@@ -43,16 +42,22 @@ const MainPage: FC = () => {
         setIsModalVisible(true) 
     }
 
-    // useEffect(() => {
-        if(observer.current) observer.current.disconnect();
-        observer.current = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting === false) {
-                setIsIntersectingNav(false)
-            }
-        })
-        if (el.current) observer.current.observe(el.current)
+    useLayoutEffect(() => {
+        const fixedTop = el.current?.offsetTop;
+        const stickyEffect = () => {
+           if(fixedTop){
+                if(window.pageYOffset > fixedTop) {
+                    setIsIntersectingNav(false)
+                }
+                else {
+                    setIsIntersectingNav(true)
+                }
+           }
+        }
 
-    // }, [isLoading])
+        window.addEventListener('scroll', stickyEffect)
+    }, [])
+    
     
     return (
         <div className={classes.container}>
