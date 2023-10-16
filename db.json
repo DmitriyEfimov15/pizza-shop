@@ -343,156 +343,33 @@
   ],
   "backet": [
     {
-      "id": 3,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "title": "Пицца от шефа",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "price": "649",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
-      "id": 7,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_292x292.webp",
-      "title": "Чоризо фреш",
-      "discription": "Фирменный томатный соус, моцарелла, острая чоризо, сладкий перец",
-      "price": "289",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
+      "dough": "традиционное",
+      "size": "25",
       "id": 2,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/33e0a4983e12466a93618bd9aefa92dd_292x292.webp",
       "title": "Пицца Жюльен",
+      "price": 469,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/33e0a4983e12466a93618bd9aefa92dd_292x292.webp",
       "discription": "Цыпленок, шампиньоны, сливочный соус с грибами, красный лук, чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо",
-      "price": "469",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
       "userId": "1"
     },
     {
-      "id": 15,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/18dbb12240b041a191c9dc73c9c1f4ef_292x292.webp",
-      "title": "Мясная",
-      "discription": "Цыпленок, ветчина, пикантная пепперони, острая чоризо, моцарелла, фирменный томатный соус",
-      "price": "469",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
+      "dough": "традиционное",
+      "size": "25",
+      "id": 3,
+      "title": "Пицца от шефа",
+      "price": 649,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
+      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
       "userId": "1"
     },
     {
-      "id": 16,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/c24bb8e55baa4ca68945459ac6afdf3e_292x292.webp",
-      "title": "Гавайская",
-      "discription": "Фирменный соус альфредо, цыпленок, моцарелла, ананасы",
-      "price": "419",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
-      "id": 17,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/c8ac7d2eb95b4bd0b8bc2f366415896c_292x292.webp",
-      "title": "Цыпленок карри",
-      "discription": "Цыпленок, ананасы, соус карри, красный лук, сладкий перец, моцарелла, фирменный томатный соус",
-      "price": "419",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
-      "id": 13,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/3a948b9d5af14d219e2c54282229755a_292x292.webp",
-      "title": "Бургер-пицца",
-      "discription": "Ветчина, маринованные огурчики, томаты, красный лук, чеснок, соус бургер, моцарелла, фирменный томатный соус",
-      "price": "419",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
+      "dough": "традиционное",
+      "size": "25",
       "id": 8,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/cea570842b754c52b786c231c65bd2e2_292x292.webp",
       "title": "Ветчина и сыр",
+      "price": 369,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/cea570842b754c52b786c231c65bd2e2_292x292.webp",
       "discription": "Ветчина, моцарелла, фирменный соус альфредо",
-      "price": "369",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
-      "userId": "1"
-    },
-    {
-      "id": 4,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/d9c609f1422247f2b87b6293eb461ff0_292x292.webp",
-      "title": "Сырная 🌱👶",
-      "discription": "Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо",
-      "price": "289",
-      "sizes": [
-        "25",
-        "30",
-        "35"
-      ],
-      "dough": [
-        "традиционное",
-        "тонкое"
-      ],
       "userId": "1"
     }
   ],

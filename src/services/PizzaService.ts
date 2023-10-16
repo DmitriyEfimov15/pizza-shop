@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { IPizza } from "../types/Pizza";
+import { IPizza, PizzaBacket } from "../types/Pizza";
 
 
 export const pizzaListAPI = createApi({

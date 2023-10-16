@@ -10,6 +10,7 @@ import Modal from "../../components/UI/Modal/Modal";
 import PizzaList from "../../components/PizzaList/PizzaList";
 import Navigation from "../../components/UI/Navigation/Navigation";
 import Backet from "../../components/UI/Backet/Backet";
+import { pizzaAPI } from "../../services/PizzaBacketService";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
@@ -20,6 +21,11 @@ const MainPage: FC = () => {
     const [isBacketVisible, setIsBacketVisible] = useState<boolean>(false)
     const el = useRef<HTMLDivElement>(null)
     const [isIntersectingNav, setIsIntersectingNav] = useState<boolean>(true)
+    const {data: pizza} = pizzaAPI.useFetchBacketPizzaQuery(1)
+
+    useEffect(() => {
+    
+    }, [pizza, isBacketVisible])
 
     useEffect(() => {
         const handleResize= () => {
@@ -63,7 +69,9 @@ const MainPage: FC = () => {
         <div className={classes.container}>
             <Navbar/>
             <Header/>
-            <Backet isVisible={isBacketVisible} setIsVisible={setIsBacketVisible}></Backet>
+            <Backet isVisible={isBacketVisible} setIsVisible={setIsBacketVisible}>
+
+            </Backet>
             <div ref={el}>
                 <Navigation isInteresting={isIntersectingNav} setVisibleBacket={setIsBacketVisible}/>  
             </div>

@@ -1,9 +1,10 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import classes from "./Backet.module.css";
 import { useOut } from "../../../hooks/useOut";
 import { AiOutlineClose } from "react-icons/ai";
 import { CSSTransition } from "react-transition-group"
 import "./animation.css";
+import { pizzaAPI } from "../../../services/PizzaBacketService";
 
 interface BacketProps {
     children?: ReactNode;

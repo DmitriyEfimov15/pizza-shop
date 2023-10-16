@@ -7,3 +7,13 @@ export interface IPizza {
     sizes: string[],
     dough: string[]
 }
+
+export interface PizzaBacket {
+    id: number,
+    dough: string,
+    size: string,
+    title: string,
+    price: number,
+    imageUrl: string,
+    discription: string,
+}

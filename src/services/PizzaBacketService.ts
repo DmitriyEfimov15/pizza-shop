@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { IPizza } from '../types/Pizza'
+import { IPizza, PizzaBacket } from '../types/Pizza'
+import { url } from 'inspector'
 
 export const pizzaAPI = createApi({
     reducerPath: 'pizzaAPI',
@@ -10,15 +11,23 @@ export const pizzaAPI = createApi({
         fetchAllPizzas: build.query<any[], number>({
             query: () => ({
                 url: "/users"
-            }),
-            providesTags: ['Pizza']
+            })
         }),
-       postNewPizza: build.mutation<IPizza, [IPizza, number]>({
+
+        fetchBacketPizza: build.query<PizzaBacket[], number>({
+            query: (id: number) => ({
+                url: `/users/${id}/backet`
+            }), providesTags: ['Pizza']
+        }),
+        
+       postNewPizza: build.mutation<PizzaBacket, [PizzaBacket, number]>({
         query: ([pizzaItem, id]) => ({
             url: `/users/${id}/backet`,
             method: "POST",
             body: pizzaItem
-        })
-       })
+        }), invalidatesTags: ['Pizza']
+        
+       }),
+
     })
 })
