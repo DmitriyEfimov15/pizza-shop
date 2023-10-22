@@ -5,6 +5,9 @@ import { IPizza, PizzaBacket } from '../../types/Pizza';
 import Switch from '../UI/Switch/Switch';
 import Button from '../UI/Button/Button';
 import { pizzaAPI } from '../../services/PizzaBacketService';
+import { CSSTransition } from "react-transition-group";
+import './animation.css'
+
 
 interface PizzaModalItemProps {
     isVisible: boolean,
@@ -18,7 +21,7 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
     const [currentPrice, setCurrentPrice] = useState<number>(parseInt(pizzaItem.price))
     const [createPizza, {isError}] = pizzaAPI.usePostNewPizzaMutation()
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
-    const _ = require('lodash')
+    const [isErrorVisible, setIsErrorVisible] = useState<boolean>(false)
 
     useEffect(() => {
         if(currentSize !== pizzaItem.sizes[0]) {
@@ -32,7 +35,7 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
         const pizzaToBacket: PizzaBacket = {
             dough: currentDough,
             size: currentSize,
-            id: pizzaItem.id,
+            id: pizzaItem.id + currentPrice + pizzaItem.dough.indexOf(currentDough),
             title: pizzaItem.title,
             price: currentPrice,
             imageUrl: pizzaItem.imageUrl,
@@ -40,18 +43,26 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
         }
         if(pizzas?.length) {
             for (let i = 0; i < pizzas?.length; i++) {
-                if (JSON.stringify(pizzaToBacket) === JSON.stringify(pizzas[i])) {
-                    console.log('ошибочка');
+                if (pizzas[i].id === pizzaToBacket.id) {
+                    
+                    setIsErrorVisible(true)
+                    setTimeout(() => {
+                        setIsErrorVisible(false)
+                    }, 3000 )
                     break
                 }
                 else {
+                    
                     createPizza([pizzaToBacket, 1])
+                    break
                 }
             }
         }
-    }
 
-    // Продолжить перебор массива, чтобы найти ошибку при отправке пиццы
+        else {
+            createPizza([pizzaToBacket, 1])
+        }
+    }
 
     return (
         <Modal setIsVisible={setIsVisible} isVisible={isVisible}>
@@ -94,7 +105,26 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
                     </div>
                 </div>
            </div>
+            <CSSTransition
+                in={isErrorVisible}
+                timeout={300}
+                classNames={'error'}
+            >
+            <div className={isErrorVisible ? classes.error__table : classes.unactive}>
+                <div className={classes.error__content}>
+                    <div className={classes.error__img}>
+                        <p>X</p>
+                    </div>
+
+                    <div className={classes.error__text}>
+                        <h2>Ошибочка!</h2>
+                        <p>Вы уже добавили этот продукт в корзину!</p>
+                    </div>
+                </div>
+            </div>
+            </CSSTransition>
         </Modal>
+        
     )
 }
 

@@ -1,0 +1,17 @@
+.error-enter-active {
+    animation: inY .3s forwards;
+}
+
+.error-exit-active {
+    animation: inY .3s reverse;
+}
+
+@keyframes inY {
+    from {
+        transform: translateY(-50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
