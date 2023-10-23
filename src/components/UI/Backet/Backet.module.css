@@ -11,11 +11,24 @@
 }
 
 .content {
+    top: 0;
     position: relative;
     background: rgb(243, 243, 247);
-    width: 450px;
+    width: 500px;
     padding: 30px;
     height: 100%;
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+    width: 10px;
+    right: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #c2bdbd;
+    border-radius: 10px;
+    height: 40px;
 }
 
 .container.active {
@@ -47,7 +60,7 @@
     top: 50%;
     /* transform: translate(0, -50%); */
     color: #fff;
-    left: -60px;
+    right: 510px;
     cursor: pointer;
     z-index: 1;
     transition: transform 500ms ease 0s;
@@ -60,4 +73,9 @@
 
 .close__button:hover {
     transform: rotate(180deg);
+}
+
+.content__container {
+    position: relative;
+    height: 100%;
 }

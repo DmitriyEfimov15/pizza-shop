@@ -11,6 +11,7 @@ import PizzaList from "../../components/PizzaList/PizzaList";
 import Navigation from "../../components/UI/Navigation/Navigation";
 import Backet from "../../components/UI/Backet/Backet";
 import { pizzaAPI } from "../../services/PizzaBacketService";
+import PizzaBacketItem from "../../components/PizzaBacketItem/PizzaBacketItem";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
@@ -21,11 +22,11 @@ const MainPage: FC = () => {
     const [isBacketVisible, setIsBacketVisible] = useState<boolean>(false)
     const el = useRef<HTMLDivElement>(null)
     const [isIntersectingNav, setIsIntersectingNav] = useState<boolean>(true)
-    const {data: pizza} = pizzaAPI.useFetchBacketPizzaQuery(1)
+    const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
 
-    useEffect(() => {
+    // useEffect(() => {
     
-    }, [pizza, isBacketVisible])
+    // }, [pizzas, isBacketVisible])
 
     useEffect(() => {
         const handleResize= () => {
@@ -70,7 +71,9 @@ const MainPage: FC = () => {
             <Navbar/>
             <Header/>
             <Backet isVisible={isBacketVisible} setIsVisible={setIsBacketVisible}>
-
+                {pizzas?.map(pizza => (
+                    <PizzaBacketItem pizzaItem={pizza} key={pizza.id}/>  // Сделать так, чтобы отоброжалась собачка, когда нет пицц
+                ))}
             </Backet>
             <div ref={el}>
                 <Navigation isInteresting={isIntersectingNav} setVisibleBacket={setIsBacketVisible}/>  

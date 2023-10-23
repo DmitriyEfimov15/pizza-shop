@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import classes from "./Modal.module.css"
 import { useOut } from "../../../hooks/useOut";
 import { CSSTransition } from "react-transition-group"
@@ -18,6 +18,16 @@ const Modal: FC<ModalProps> = ({children, isVisible, setIsVisible}) => {
     if(isVisible) {
         rootClasses.push(classes.active)
     }
+
+    useEffect(() => {
+        if(isVisible) {
+            document.body.style.overflowY = 'hidden'
+        }
+
+        else {
+            document.body.style.overflowY = 'scroll'
+        }
+    }, [isVisible])
 
     return (
         <div className={rootClasses.join(' ')} onClick={() => setIsVisible(false)}>
