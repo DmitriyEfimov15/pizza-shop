@@ -18,8 +18,13 @@ const PizzaBacketItem: FC<PizzaBacketItemProps> = ({pizzaItem}) => {
                 <div className={classes.pizza__info}>
                     <h2 className={classes.pizza__title}>{pizzaItem.title}</h2>
                     <p className={classes.pizza__details}>{pizzaItem.size}см, {pizzaItem.dough} тесто</p>
-                    <div className={classes.button__box}>
-                        <Button color="orange">Заказать</Button>
+                </div>
+            </div>
+
+            <div className={classes.count__box}>
+                <div className={classes.count}>
+                    <div className={classes.price}>
+                        <p>{pizzaItem.price}₽</p>
                     </div>
                 </div>
             </div>

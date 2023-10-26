@@ -1,0 +1,17 @@
+.container {
+}
+
+.content {
+    display: flex;
+}
+
+.pizza__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.pizza__img img{
+    width: 100%;
+}
