@@ -1,8 +1,19 @@
 .container {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    margin-top: 20px;
 }
 
 .content {
+    position: relative;
     display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgb(226, 226, 233);
+    padding-bottom: 12px;
 }
 
 .pizza__img {
@@ -14,4 +25,48 @@
 
 .pizza__img img{
     width: 100%;
+}
+
+.pizza__info {
+    width: 100%;
+}
+
+.count__box {
+    margin-top: 12px;
+}
+
+.price {
+    font-size: 30px;
+}
+
+.count {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.counter {
+    width: 150px;
+    height: 30px;
+    background: rebeccapurple;
+}
+
+.delete__button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.delete__button button {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ff4f00;
+    transition: 0.3s;
+}
+
+.delete__button button:hover {
+    color: #df4903;
 }

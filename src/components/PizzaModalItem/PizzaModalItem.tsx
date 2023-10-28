@@ -40,7 +40,9 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
             price: currentPrice,
             imageUrl: pizzaItem.imageUrl,
             discription: pizzaItem.discription,
+            count: 1
         }
+
         if(pizzas?.length) {
             for (let i = 0; i < pizzas?.length; i++) {
                 if (pizzas[i].id === pizzaToBacket.id) {

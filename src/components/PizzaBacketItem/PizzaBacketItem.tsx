@@ -2,12 +2,18 @@ import React, { FC } from "react"
 import { PizzaBacket } from "../../types/Pizza";
 import classes from "./PizzaBacketItem.module.css"
 import Button from "../UI/Button/Button";
+import Counter from "../UI/Counter/Counter";
+import { pizzaAPI } from "../../services/PizzaBacketService";
+import {AiFillDelete} from 'react-icons/ai'
 
 interface PizzaBacketItemProps {
     pizzaItem: PizzaBacket
 }
 
 const PizzaBacketItem: FC<PizzaBacketItemProps> = ({pizzaItem}) => {
+    const [deletePizza, {}] = pizzaAPI.useDeletePizzaMutation()
+    console.log(pizzaItem.id);
+    
     return (
         <div className={classes.container}>
             <div className={classes.content}>
@@ -19,6 +25,9 @@ const PizzaBacketItem: FC<PizzaBacketItemProps> = ({pizzaItem}) => {
                     <h2 className={classes.pizza__title}>{pizzaItem.title}</h2>
                     <p className={classes.pizza__details}>{pizzaItem.size}см, {pizzaItem.dough} тесто</p>
                 </div>
+                <div className={classes.delete__button}>
+                    <button onClick={() => deletePizza(pizzaItem)}><AiFillDelete/></button>
+                </div>
             </div>
 
             <div className={classes.count__box}>
@@ -26,6 +35,7 @@ const PizzaBacketItem: FC<PizzaBacketItemProps> = ({pizzaItem}) => {
                     <div className={classes.price}>
                         <p>{pizzaItem.price}₽</p>
                     </div>
+                    <Counter pizzaItem={pizzaItem}/>
                 </div>
             </div>
         </div>

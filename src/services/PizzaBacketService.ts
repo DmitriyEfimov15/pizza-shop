@@ -29,5 +29,22 @@ export const pizzaAPI = createApi({
         
        }),
 
+       deletePizza: build.mutation<PizzaBacket, PizzaBacket>({
+            query: (pizza) => ({
+                url: `/backet/${pizza.id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Pizza']
+       }),
+
+       updatePizza: build.mutation<PizzaBacket, PizzaBacket>({
+            query: (pizza) => ({
+                url: `/backet/${pizza.id}`,
+                method: 'PUT',
+                body: pizza
+            }), 
+            invalidatesTags: ['Pizza']
+       })
+
     })
 })

@@ -16,4 +16,5 @@ export interface PizzaBacket {
     price: number,
     imageUrl: string,
     discription: string,
+    count: number
 }

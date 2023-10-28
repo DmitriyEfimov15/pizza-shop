@@ -344,13 +344,13 @@
   "backet": [
     {
       "dough": "традиционное",
+      "discription": "Фирменный томатный соус, моцарелла, острая чоризо, сладкий перец",
+      "id": 296,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_292x292.webp",
+      "price": 289,
       "size": "25",
-      "id": 652,
-      "title": "Пицца от шефа",
-      "price": 649,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "userId": "1"
+      "title": "Чоризо фреш",
+      "count": 1
     }
   ],
   "cities": [

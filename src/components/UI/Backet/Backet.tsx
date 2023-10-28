@@ -5,6 +5,7 @@ import { useOut } from "../../../hooks/useOut";
 import { pizzaAPI } from "../../../services/PizzaBacketService";
 import classes from "./Backet.module.css";
 import "./animation.css";
+import Button from "../Button/Button";
 
 interface BacketProps {
     children?: ReactNode;
@@ -17,10 +18,14 @@ const Backet: FC<BacketProps> = ({children, setIsVisible, isVisible}) => {
     const modalRef = useOut(() => setIsVisible(false))
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
     const [arrPrice, setArrPrice] = useState<number[]>([])
-    const result = arrPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    const [arrLength, setArrLength] = useState<number[]>([])
+    const resultPrice = arrPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    const resultLength = arrLength.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     useEffect(() => {
         setArrPrice([])
+        setArrLength([])
         pizzas?.map(pizza => setArrPrice(oldArray => ([...oldArray, pizza.price])))
+        pizzas?.map(pizza => setArrLength(oldArray => ([...oldArray, pizza.count])))
     }, [pizzas])
     
 
@@ -61,22 +66,35 @@ const Backet: FC<BacketProps> = ({children, setIsVisible, isVisible}) => {
                             </div>
                             : <div className={classes.children}>
                                 <div className={classes.children__info}>
-                                    {pizzas.length === 1 
-                                    ? <h2>{pizzas.length} товар на {result}₽</h2>
-                                    :<h2>{pizzas.length} товара на {result}₽</h2>
+                                    {resultLength === 1 
+                                    ? <h2>{resultLength} товар на {resultPrice}₽</h2>
+                                    :<h2>{resultLength} товара на {resultPrice}₽</h2>
                                 }
-                                {result < 749 
-                                ? <div className={classes.min__result}>До минимальной суммы на доставку — {749 - result} ₽</div>
+                                {resultPrice < 749 
+                                ? <div className={classes.min__resultPrice}>До минимальной суммы на доставку — {749 - resultPrice} ₽</div>
                                 : <div></div>
                             }
                                 </div>
-                                <div className={classes.chuldren__box}> 
-                                {children}
+                                <div className={classes.children__box}> 
+                                    {children}
                                 </div>
                             </div>
                         }
-                    </div>
 
+                    {!pizzas?.length 
+                        ? <div></div>
+                        : <div className={classes.buy__window}>
+                        <div className={classes.sum__booking}>
+                            <p>Сумма заказа</p>
+                            <p>{resultPrice}₽</p>
+                        </div>
+                        <div className={classes.buy__button}>
+                            <Button color="orange">К оформлению заказа</Button>
+                        </div>
+                    </div>
+                    
+                    }
+                    </div>
                     <div className={classes.close__button} onClick={() => setIsVisible(false)}><AiOutlineClose/></div>
                 </div>
             </CSSTransition>

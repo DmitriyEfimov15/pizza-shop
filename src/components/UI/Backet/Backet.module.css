@@ -18,6 +18,9 @@
     /* padding: 30px; */
     height: 100%;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .content::-webkit-scrollbar {
@@ -79,6 +82,8 @@
     position: relative;
     height: 100%;
     background: #f3f3f7;
+    display: flex;
+    flex-direction: column;
 }
 
 .children__info {
@@ -92,4 +97,51 @@
 
 .min__result {
     margin-bottom: 15px;
+}
+
+.buy__window {
+    width: 100%;
+    padding: 24px;
+    background: #fff;
+}
+
+.sum__booking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sum__booking p {
+    font-size: 22px;
+}
+
+.buy__button {
+    margin-top: 15px;
+}
+
+.buy__button button {
+    position: relative;
+    width: 100%;
+    font-size: 26px;
+    padding: 10px 15px;
+}
+
+.buy__button button::after {
+    content: "\2192";
+    position: absolute;
+    right: 40px;
+}
+
+.buy__button button:hover::after {
+    animation: right .35s ease-in forwards;
+}
+
+@keyframes right {
+    from {
+        right: 40px;
+    }
+
+    to {
+        right: 10px;
+    }
 }
