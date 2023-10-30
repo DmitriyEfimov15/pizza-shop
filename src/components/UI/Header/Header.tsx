@@ -12,6 +12,7 @@ import { formatPhoneNumber } from "../../../utils/formatPhoneNumber";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reducerHooks";
 import { fetchCities } from "../../../store/action-creators/fetchCities";
 import Loader from "../Loader/Loader";
+import Logo from '../Logo/Logo'
 
 const Header: FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -63,13 +64,7 @@ const Header: FC = () => {
         <header className={classes.container}>
             <div className={classes.content}>
                 <div className={classes.left}>
-                    <div className={classes.img}>
-                        <img src={pizzaImg} alt="Logo" />
-                        <div className={classes.img__text}>
-                            <h2>Панчо Пицца</h2>
-                            <p>Сеть пиццерий №2 в России</p>
-                        </div>
-                    </div>
+                    <Logo/>
 
                     <div className={classes.deliviry}>
                         <CSSTransition

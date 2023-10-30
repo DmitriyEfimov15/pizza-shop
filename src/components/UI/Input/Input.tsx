@@ -5,7 +5,7 @@ interface InputProps {
     value: string,
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     type: React.HTMLInputTypeAttribute;
-    text: string 
+    text?: string 
 }
 
 const Input: FC<InputProps> = ({ text,...props}) => {

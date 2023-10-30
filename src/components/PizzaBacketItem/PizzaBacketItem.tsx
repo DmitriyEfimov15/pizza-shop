@@ -12,7 +12,6 @@ interface PizzaBacketItemProps {
 
 const PizzaBacketItem: FC<PizzaBacketItemProps> = ({pizzaItem}) => {
     const [deletePizza, {}] = pizzaAPI.useDeletePizzaMutation()
-    console.log(pizzaItem.id);
     
     return (
         <div className={classes.container}>

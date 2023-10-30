@@ -6,6 +6,7 @@ import { pizzaAPI } from "../../../services/PizzaBacketService";
 import classes from "./Backet.module.css";
 import "./animation.css";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 interface BacketProps {
     children?: ReactNode;
@@ -21,6 +22,7 @@ const Backet: FC<BacketProps> = ({children, setIsVisible, isVisible}) => {
     const [arrLength, setArrLength] = useState<number[]>([])
     const resultPrice = arrPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     const resultLength = arrLength.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    const id = 1
     useEffect(() => {
         setArrPrice([])
         setArrLength([])
@@ -89,7 +91,7 @@ const Backet: FC<BacketProps> = ({children, setIsVisible, isVisible}) => {
                             <p>{resultPrice}₽</p>
                         </div>
                         <div className={classes.buy__button}>
-                            <Button color="orange">К оформлению заказа</Button>
+                            <Button color="orange"><Link to={`/buy-page/${id}`}>К оформлению заказа</Link></Button>
                         </div>
                     </div>
                     

@@ -126,6 +126,11 @@
     padding: 10px 15px;
 }
 
+.buy__button button a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .buy__button button::after {
     content: "\2192";
     position: absolute;
@@ -145,3 +150,4 @@
         right: 10px;
     }
 }
+

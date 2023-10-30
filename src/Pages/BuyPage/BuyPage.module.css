@@ -1,0 +1,96 @@
+.container {
+    width: 1024px;
+    margin: 0 auto;
+    padding: 24px 0 15px;
+    font-family: "Montserrat", sans-serif;
+} 
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.balls__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.balls__box div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 164px;
+} 
+
+
+.balls__box .ball__content {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.balls__box span {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    max-width: 160px;
+    font-size: 14px;
+}
+
+.ball__backet, .ball__buy {
+    position: relative;
+}
+
+.ball__backet::before {
+    position: absolute;
+    content: "";
+    width: 70%;
+    height: 1px;
+    background: #000;
+    top: 18px;
+    left: 65%;
+}
+
+.ball__buy::before {
+    position: absolute;
+    content: "";
+    width: 70%;
+    height: 1px;
+    top: 18px;
+    left: 65%;
+    background-color: rgb(175, 175, 175);
+    background-image: repeating-linear-gradient(90deg, rgb(175, 175, 175), rgb(175, 175, 175) 2px, rgb(255, 255, 255) 3px, rgb(255, 255, 255) 8px);
+}
+
+.main {
+    margin-top: 30px;
+}
+
+.main__head {
+    font-size: 30px;
+}
+
+#input__box {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#input__box input {
+    width: 300px;
+}
+
+#input__box p {
+    font-size: 17px;
+    width: 160px;
+    margin-right: 10px;
+    font-weight: 700;
+}
