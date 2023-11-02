@@ -5,12 +5,13 @@ interface InputProps {
     value: string,
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     type: React.HTMLInputTypeAttribute;
-    text?: string 
+    text?: string,
+    length?: number
 }
 
-const Input: FC<InputProps> = ({ text,...props}) => {
+const Input: FC<InputProps> = ({ text, length,...props}) => {
     return (
-        <input placeholder={text} className={classes.input} {...props} />
+        <input maxLength={length} placeholder={text} className={classes.input} {...props} />
     )
 }
 

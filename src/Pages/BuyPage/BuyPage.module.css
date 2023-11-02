@@ -88,9 +88,37 @@
     width: 300px;
 }
 
-#input__box p {
+#input__box p, .pizza__adress p {
     font-size: 17px;
-    width: 160px;
-    margin-right: 10px;
+    width: 170px;
+    margin-right: 20px;
     font-weight: 700;
+}
+
+.pizza__adress {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 0;
+}
+
+.adress__box {
+    min-width: 400px;
+    border-radius: 15px;
+    border: 1px solid rgb(226, 226, 233);
+    background: #f3f3f7;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adress__button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4f00;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    margin-left: 15px;
 }

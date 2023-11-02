@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IPizza, PizzaBacket } from '../types/Pizza'
-import { url } from 'inspector'
-
 export const pizzaAPI = createApi({
     reducerPath: 'pizzaAPI',
     baseQuery: fetchBaseQuery({baseUrl: "http://localhost:5000"}),

@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 import classes from "./BuyPage.module.css";
-import logo from '../../assets/pizza.png'
 import Logo from "../../components/UI/Logo/Logo";
 import {MdOutlineDone} from 'react-icons/md'
 import {PiNumberThree, PiNumberTwo} from 'react-icons/pi'
 import Input from "../../components/UI/Input/Input";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber";
+import LocalPizzaList from "../../components/LocalPizzaList/LocalPizzaList";
 
 interface BuyPageProps {
 
@@ -14,6 +14,9 @@ interface BuyPageProps {
 const BuyPage: FC<BuyPageProps> = ({}) => {
     const [nameInputValue, setNameInputValue] = useState<string>('')
     const [numberInputValue, setNumberInputValue] = useState<string>('')
+    const [inputValue, setInputValue] = useState<string>('Не выбран!')
+    const [isVisibleLocalAdress, setIsVisibleLocalAdress] = useState<boolean>(false)
+    
 
     const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const formatedPhoneNumber:string = formatPhoneNumber(e.target.value)
@@ -52,7 +55,7 @@ const BuyPage: FC<BuyPageProps> = ({}) => {
                 </header>
                 <div id={classes.input__box} className={classes.name}>
                     <p>Имя</p>
-                    <Input value={nameInputValue} onChange={(e) => setNameInputValue(e.target.value)} type={"text"} text={'Имя'}/> // сделать ленгх максимальный
+                    <Input length={15} value={nameInputValue} onChange={(e) => setNameInputValue(e.target.value)} type={"text"} text={'Имя'}/> 
                 </div>
 
                 <div id={classes.input__box} className={classes.name}>
@@ -60,10 +63,15 @@ const BuyPage: FC<BuyPageProps> = ({}) => {
                     <Input value={numberInputValue} onChange={handleNumberInput} type={"text"} text={'Ваш номер телефона'}/>
                 </div>
 
-                {/* <div id={classes.input__box} className={classes.name}>
-                    <p>Адрес</p>
-                    <Input value={nameInputValue} onChange={(e) => setNameInputValue(e.target.value)} type={"text"} text={'Имя'}/>
-                </div> */}
+               <div className={classes.pizza__adress}>
+                    <p>Адресс пиццерии</p>
+                    <div className={classes.adress__box}>
+                        <span>{inputValue}</span>
+                        <button className={classes.adress__button} onClick={() => setIsVisibleLocalAdress(true)}>Изменить</button>
+                    </div>
+               </div>
+
+               <LocalPizzaList isVisible={isVisibleLocalAdress} setIsVisible={setIsVisibleLocalAdress} valueInput={inputValue} setValueInput={setInputValue}/>
             </main>
         </div>
     )
