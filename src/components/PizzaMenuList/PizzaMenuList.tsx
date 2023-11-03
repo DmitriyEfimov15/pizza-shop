@@ -1,9 +1,12 @@
 import React, { FC } from 'react'
 import classes from './PizzaMenuList.module.css'
 import { pizzaAPI } from '../../services/PizzaBacketService'
+import { useResultLength, useResultPrice } from '../../hooks/useResult'
 
 const PizzaMenuList: FC = () => {
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
+    const resultPrice = useResultPrice(pizzas)
+    const resultLength = useResultLength(pizzas)
 
     return (
         <div className={classes.container}>
@@ -11,7 +14,7 @@ const PizzaMenuList: FC = () => {
             {pizzas?.length
                 ? <div>
                     {pizzas.map(pizza => (
-                        <div className={classes.pizza__item}>
+                        <div key={pizza.id} className={classes.pizza__item}>
                             <div className={classes.pizza__text}>
                                 <p className={classes.title}>{pizza.title}</p>
                                 <p>{pizza.size}см, {pizza.dough} тесто </p>
@@ -26,7 +29,23 @@ const PizzaMenuList: FC = () => {
                 : <div>ошибка!</div>
             }
 
-            <div></div>
+            <div className={classes.result}>
+                {resultLength === 1
+                    ? <div className={classes.one__length}>
+                        <p className={classes.font__weight}>{resultLength} товар</p>
+                        <p>{resultPrice}₽</p>
+                     </div>
+                    : <div className={classes.more__length}>
+                        <p className={classes.font__weight}>{resultLength} товара</p>
+                        <p>{resultPrice}₽</p>
+                     </div>  
+                }
+            </div>
+
+            <div className={classes.summ}>
+                <p className={classes.font__weight}>Сумма заказа</p>
+                <p>{resultPrice}₽</p>
+            </div>
         </div>
     )
 } 

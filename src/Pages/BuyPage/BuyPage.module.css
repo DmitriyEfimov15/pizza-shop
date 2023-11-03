@@ -1,5 +1,5 @@
 .container {
-    width: 1024px;
+    width: 1280px;
     margin: 0 auto;
     padding: 24px 0 15px;
     font-family: "Montserrat", sans-serif;
@@ -72,6 +72,7 @@
 
 .main {
     margin-top: 30px;
+    position: relative;
 }
 
 .main__head {
@@ -121,4 +122,34 @@
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     margin-left: 15px;
+}
+
+.menu {
+    position: absolute;
+    width: 450px;
+    top: 15px;
+    right: -60px;
+}
+
+.button__box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.button__box button:first-child {
+    padding: 15px;
+}
+
+.button__box button:first-child a{
+    text-decoration: none;
+    color: #5c6370;
+    font-size: 20px;
+}
+
+.button__box button:last-child {
+    font-size: 20px;
+    padding: 15px;
 }

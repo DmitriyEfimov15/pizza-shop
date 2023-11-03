@@ -7,6 +7,10 @@ import Input from "../../components/UI/Input/Input";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber";
 import LocalPizzaList from "../../components/LocalPizzaList/LocalPizzaList";
 import PizzaMenuList from "../../components/PizzaMenuList/PizzaMenuList";
+import { Link } from "react-router-dom";
+import Button from "../../components/UI/Button/Button";
+import { useResultPrice } from "../../hooks/useResult";
+import { pizzaAPI } from "../../services/PizzaBacketService";
 
 interface BuyPageProps {
 
@@ -17,7 +21,8 @@ const BuyPage: FC<BuyPageProps> = () => {
     const [numberInputValue, setNumberInputValue] = useState<string>('')
     const [inputValue, setInputValue] = useState<string>('Не выбран!')
     const [isVisibleLocalAdress, setIsVisibleLocalAdress] = useState<boolean>(false)
-    
+    const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
+    const resultPrice = useResultPrice(pizzas) 
 
     const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const formatedPhoneNumber:string = formatPhoneNumber(e.target.value)
@@ -76,6 +81,11 @@ const BuyPage: FC<BuyPageProps> = () => {
                <div className={classes.menu}>
                     <PizzaMenuList/>
                 </div> 
+
+                <div className={classes.button__box}>
+                    <Button color=""><Link to={'/main'}>Назад на главную</Link></Button>
+                    <Button color="orange">Оформить заказ на {resultPrice}₽</Button>
+                </div>
             </main>
         </div>
     )
