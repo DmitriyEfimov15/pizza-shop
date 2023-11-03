@@ -19,7 +19,7 @@ const PizzaModalItem: FC<PizzaModalItemProps> = ({isVisible, pizzaItem, setIsVis
     const [currentSize, setCurrentSize] = useState<string>(pizzaItem.sizes[0])
     const [currentDough, setCurrentDough] = useState<string>("традиционное")
     const [currentPrice, setCurrentPrice] = useState<number>(parseInt(pizzaItem.price))
-    const [createPizza, {isError}] = pizzaAPI.usePostNewPizzaMutation()
+    const [createPizza] = pizzaAPI.usePostNewPizzaMutation()
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
     const [isErrorVisible, setIsErrorVisible] = useState<boolean>(false)
 

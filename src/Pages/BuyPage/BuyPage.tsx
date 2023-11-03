@@ -6,12 +6,13 @@ import {PiNumberThree, PiNumberTwo} from 'react-icons/pi'
 import Input from "../../components/UI/Input/Input";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber";
 import LocalPizzaList from "../../components/LocalPizzaList/LocalPizzaList";
+import PizzaMenuList from "../../components/PizzaMenuList/PizzaMenuList";
 
 interface BuyPageProps {
 
 }
 
-const BuyPage: FC<BuyPageProps> = ({}) => {
+const BuyPage: FC<BuyPageProps> = () => {
     const [nameInputValue, setNameInputValue] = useState<string>('')
     const [numberInputValue, setNumberInputValue] = useState<string>('')
     const [inputValue, setInputValue] = useState<string>('Не выбран!')
@@ -71,7 +72,10 @@ const BuyPage: FC<BuyPageProps> = ({}) => {
                     </div>
                </div>
 
-               <LocalPizzaList isVisible={isVisibleLocalAdress} setIsVisible={setIsVisibleLocalAdress} valueInput={inputValue} setValueInput={setInputValue}/>
+               <LocalPizzaList isVisible={isVisibleLocalAdress} setIsVisible={setIsVisibleLocalAdress} setValueInput={setInputValue}/>
+               <div className={classes.menu}>
+                    <PizzaMenuList/>
+                </div> 
             </main>
         </div>
     )

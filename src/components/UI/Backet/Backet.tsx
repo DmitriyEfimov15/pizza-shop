@@ -7,6 +7,7 @@ import classes from "./Backet.module.css";
 import "./animation.css";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { useResultLength, useResultPrice } from "../../../hooks/useResult";
 
 interface BacketProps {
     children?: ReactNode;
@@ -18,17 +19,24 @@ const Backet: FC<BacketProps> = ({children, setIsVisible, isVisible}) => {
     const rootClasses = [classes.container]
     const modalRef = useOut(() => setIsVisible(false))
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
-    const [arrPrice, setArrPrice] = useState<number[]>([])
-    const [arrLength, setArrLength] = useState<number[]>([])
-    const resultPrice = arrPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    const resultLength = arrLength.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    // const [arrPrice, setArrPrice] = useState<number[]>([])
+    // const [arrLength, setArrLength] = useState<number[]>([])
+    // const resultPrice = arrPrice.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    // const resultLength = arrLength.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     const id = 1
-    useEffect(() => {
-        setArrPrice([])
-        setArrLength([])
-        pizzas?.map(pizza => setArrPrice(oldArray => ([...oldArray, pizza.price])))
-        pizzas?.map(pizza => setArrLength(oldArray => ([...oldArray, pizza.count])))
-    }, [pizzas])
+    // useEffect(() => {
+    //     setArrPrice([])
+    //     setArrLength([])
+    //     pizzas?.map(pizza => setArrPrice(oldArray => ([...oldArray, pizza.price])))
+    //     pizzas?.map(pizza => setArrLength(oldArray => ([...oldArray, pizza.count])))
+    // }, [pizzas])
+
+    // const [resultLength, setResultLenght] = useState<number>(0)
+    // const [resultPrice, setResultPrice] = useState<number>(0)
+    //     setResultLenght(useResultLength(pizzas))
+    //  setResultPrice(useResultPrice(pizzas))
+    const resultPrice = useResultPrice(pizzas)
+    const resultLength = useResultLength(pizzas)
     
 
     if (isVisible) {
