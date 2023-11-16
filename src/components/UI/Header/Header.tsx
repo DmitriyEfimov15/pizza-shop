@@ -99,7 +99,7 @@ const Header: FC = () => {
                                     <a onClick={setCityFunc}>Санкт-Петербург</a>
                                 </div>
 
-                                <div>
+                                <div className={classes.modal__cities_box}>
                                     {isLoading 
                                     ? <div className={classes.modal__cities__loader}><Loader/></div>
                                     : 

@@ -379,48 +379,7 @@
       "time": "пн-вс: 8:00 — 23:00"
     }
   ],
-  "backet": [
-    {
-      "dough": "традиционное",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "id": 652,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "price": 1947,
-      "size": "25",
-      "title": "Пицца от шефа",
-      "count": 1
-    },
-    {
-      "dough": "тонкое",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "id": 653,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "price": 3245,
-      "size": "25",
-      "title": "Пицца от шефа",
-      "count": 1
-    },
-    {
-      "dough": "тонкое",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "id": 807,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "price": 803,
-      "size": "30",
-      "title": "Пицца от шефа",
-      "count": 1
-    },
-    {
-      "dough": "тонкое",
-      "discription": "Пастрами из мраморной говядины, сладкий перец, томаты, красный лук, чеснок, соус ткемали, моцарелла, фирменный томатный соус",
-      "id": 961,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/b83c18abe22b4c04a6c15fa16d149258_292x292.webp",
-      "price": 957,
-      "size": "35",
-      "title": "Пицца от шефа",
-      "count": 1
-    }
-  ],
+  "backet": [],
   "cities": [
     {
       "coords": {

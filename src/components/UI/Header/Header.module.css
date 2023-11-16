@@ -257,6 +257,10 @@
     cursor: pointer;
 }
 
+.modal__cities_box {
+    overflow: hidden;
+}
+
 .unactive {
     display: none;
 }
@@ -279,8 +283,21 @@
     .modal__content {
         width: 600px;
     }
-}
+    .deliviry__text, .deliviry__info {
+        display: none;
+    }
 
+    .question__container {
+        right: -540px;
+        top: -50px;
+    }
+
+    .question__container::before {
+        top: 0px;
+        left: 50%;
+        transform: rotate(45deg) translate(-50%, 0);
+    }
+}
 @media (max-width: 1060px) {
     .container {
         width: 800px;
@@ -289,5 +306,17 @@
     .deliviry__text,
     .img__text h2 {
         font-size: 20px;
+    }
+}
+
+@media (max-height: 1050px) {
+    .modal__cities {
+        height: 300px;
+    }
+}
+
+@media (max-height: 750px) {
+    .modal__cities {
+        height: 150px;
     }
 }

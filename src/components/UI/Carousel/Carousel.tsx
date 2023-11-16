@@ -2,7 +2,6 @@ import React, {FC, ReactElement, Children, useEffect, useState, cloneElement, us
 import classes from "./Carousel.module.css"
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 import Loader from "../Loader/Loader";
-import { current } from "@reduxjs/toolkit";
 
 interface CarouselProps {
     children: ReactElement[];

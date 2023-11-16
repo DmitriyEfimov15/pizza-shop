@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState, useRef, useLayoutEffect} from "react";
+import React, {FC, useEffect, useState, useRef, useLayoutEffect, useMemo} from "react";
 import classes from "./MainPage.module.css"
 import Navbar from "../../components/UI/Navbar/Navbar";
 import Header from "../../components/UI/Header/Header";
@@ -12,6 +12,7 @@ import Navigation from "../../components/UI/Navigation/Navigation";
 import Backet from "../../components/UI/Backet/Backet";
 import { pizzaAPI } from "../../services/PizzaBacketService";
 import PizzaBacketItem from "../../components/PizzaBacketItem/PizzaBacketItem";
+import { useHeight } from "../../hooks/useHeight";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
@@ -23,10 +24,21 @@ const MainPage: FC = () => {
     const el = useRef<HTMLDivElement>(null)
     const [isIntersectingNav, setIsIntersectingNav] = useState<boolean>(true)
     const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
+    const [contentHeigth, setContentHeigth] = useState<number>(600)
 
-    // useEffect(() => {
+    // useMemo(() => {
+    //     if (window.innerHeight < 900) {
+    //         setContentHeigth('550')
+    //     }
+        
+    //     if (window.innerHeight < 800) {
+    //         setContentHeigth('480')
+    //     }
+    //     if (window.innerHeight < 700) {
+    //         setContentHeigth('390')
+    //     }
+    // }, [window.innerHeight])
     
-    // }, [pizzas, isBacketVisible])
 
     useEffect(() => {
         const handleResize= () => {
@@ -86,7 +98,7 @@ const MainPage: FC = () => {
                 </Carousel>
                 <Modal isVisible={isModalVisible} setIsVisible={setIsModalVisible}>
                     <div className={classes.modal__content}>
-                        <Carousel id={sliderItemID} isModal={true} isLoading={isLoading} contentHeigth="730px" heightItem="250px" elementsToShow={1}>
+                        <Carousel id={sliderItemID} isModal={true} isLoading={isLoading} contentHeigth={`${Math.ceil(window.innerHeight/2) + 100}px`} heightItem="250px" elementsToShow={1}>
                             {sliderList.map(item => (
                                 <SliderItem isModal={true} sliderItem={item} key={item.id}/>
                             ))}

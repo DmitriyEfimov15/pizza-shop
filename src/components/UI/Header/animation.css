@@ -29,3 +29,19 @@
         transform: translateY(0);
     }
 }
+
+@keyframes inDown {
+    from {
+        transform: translateY(-150px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 960px) {
+    .question-enter-active {
+        animation: inDown .3s forwards;
+    }
+}
