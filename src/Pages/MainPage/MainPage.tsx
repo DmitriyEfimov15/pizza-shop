@@ -13,6 +13,7 @@ import Backet from "../../components/UI/Backet/Backet";
 import { pizzaAPI } from "../../services/PizzaBacketService";
 import PizzaBacketItem from "../../components/PizzaBacketItem/PizzaBacketItem";
 import { useHeight } from "../../hooks/useHeight";
+import Footer from "../../components/UI/Footer/Footer";
 
 const MainPage: FC = () => {
     const dispatch = useAppDispatch()
@@ -107,6 +108,7 @@ const MainPage: FC = () => {
                 </Modal>
             </div>
             <PizzaList idElement="pizza"/>
+            <Footer/>
         </div>
     )
 }

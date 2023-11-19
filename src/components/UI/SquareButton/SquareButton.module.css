@@ -1,0 +1,13 @@
+.container {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    background: #c4c4c433;
+    transition: 0.5s;
+}
+
+.container:hover {
+    background: rgba(196, 196, 196, 0.5);;
+}

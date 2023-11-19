@@ -1,7 +1,8 @@
 import React, { FC, createRef, useEffect } from "react";
 import classes from "./Navigation.module.css";
 import Button from "../Button/Button";
-import { NavLink } from "react-router-dom";
+import { useResultLength } from "../../../hooks/useResult";
+import { pizzaAPI } from "../../../services/PizzaBacketService";
 
 interface NavigationProps {
     setVisibleBacket: React.Dispatch<React.SetStateAction<boolean>>
@@ -10,6 +11,9 @@ interface NavigationProps {
 
 const Navigation: FC<NavigationProps> = ({setVisibleBacket, isInteresting}) => {
     const rootClasses = [classes.container]
+    const {data: pizzas} = pizzaAPI.useFetchBacketPizzaQuery(1)
+    const lengthBacket = useResultLength(pizzas)
+
     if(!isInteresting) {
         rootClasses.push(classes.fixed)
     }
@@ -20,7 +24,12 @@ const Navigation: FC<NavigationProps> = ({setVisibleBacket, isInteresting}) => {
                     <a href="#pizza">Пицца</a>
                 </div>
                 <div className={classes.button__box}>
-                    <Button onClick={() => setVisibleBacket(true)} color="orange">Корзина</Button>
+                    <Button onClick={() => setVisibleBacket(true)} color="orange">
+                        {!lengthBacket 
+                            ? <p>Корзина</p>
+                            : <p>Корзина | {lengthBacket}</p>
+                        }
+                    </Button>
                 </div>
             </div>
         </header>
