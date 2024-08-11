@@ -379,68 +379,7 @@
       "time": "пн-вс: 8:00 — 23:00"
     }
   ],
-  "backet": [
-    {
-      "dough": "традиционное",
-      "discription": "Острая чоризо, цыпленок, томаты, соус бургер, сладкий перец, красный лук, моцарелла, соус ранч, чеснок",
-      "id": 439,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/bebaa13644304e75b438e45be9eb5076_292x292.webp",
-      "price": 3771,
-      "size": "25",
-      "title": "Аррива!",
-      "count": 1
-    },
-    {
-      "dough": "традиционное",
-      "discription": "Цыпленок, шампиньоны, сливочный соус с грибами, красный лук, чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо",
-      "id": 471,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/33e0a4983e12466a93618bd9aefa92dd_292x292.webp",
-      "price": 469,
-      "size": "25",
-      "title": "Пицца Жюльен",
-      "count": 1
-    },
-    {
-      "dough": "традиционное",
-      "discription": "Цыпленок, шампиньоны, сливочный соус с грибами, красный лук, чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо",
-      "id": 625,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/33e0a4983e12466a93618bd9aefa92dd_292x292.webp",
-      "price": 623,
-      "size": "30",
-      "title": "Пицца Жюльен",
-      "count": 1
-    },
-    {
-      "dough": "тонкое",
-      "discription": "Ветчина, маринованные огурчики, томаты, красный лук, чеснок, соус бургер, моцарелла, фирменный томатный соус",
-      "id": 433,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/3a948b9d5af14d219e2c54282229755a_292x292.webp",
-      "price": 419,
-      "size": "25",
-      "title": "Бургер-пицца",
-      "count": 1
-    },
-    {
-      "dough": "традиционное",
-      "discription": "Фирменный томатный соус, моцарелла, острая чоризо, сладкий перец",
-      "id": 296,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_292x292.webp",
-      "price": 289,
-      "size": "25",
-      "title": "Чоризо фреш",
-      "count": 1
-    },
-    {
-      "dough": "традиционное",
-      "discription": "Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо",
-      "id": 293,
-      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/d9c609f1422247f2b87b6293eb461ff0_292x292.webp",
-      "price": 289,
-      "size": "25",
-      "title": "Сырная 🌱👶",
-      "count": 1
-    }
-  ],
+  "backet": [],
   "cities": [
     {
       "coords": {

@@ -8,7 +8,7 @@ const Logo: FC = () => {
             <img src={pizzaImg} alt="Logo" />
             <div className={classes.img__text}>
                 <h2>Панчо Пицца</h2>
-                <p>Сеть пиццерий №2 в России</p>
+                <p>Сеть пиццерий №01 в России</p>
             </div>
         </div>
     )

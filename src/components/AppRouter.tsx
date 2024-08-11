@@ -23,4 +23,6 @@ const AppRouter: FC = () => {
     )
 }
 
+// json-server db.json --port 5000
+
 export default AppRouter;
